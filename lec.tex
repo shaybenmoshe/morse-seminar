@@ -10,19 +10,27 @@
 \newfontfamily\hebrewfont{David}
 
 \setlength{\parindent}{0em}
-\setlength{\parskip}{0.5em}
+\setlength{\parskip}{0.8em}
 
 \newtheorem{theorem}{משפט}
 \newtheorem*{theorem*}{משפט}
 
 \theoremstyle{definition}
 \newtheorem*{definition*}{הגדרה}
+\newtheorem*{example*}{דוגמה}
 
 \newcommand{\ncmd}{\newcommand}
+
+\ncmd{\prt}{\partial}
 
 \ncmd{\mbb}[1]{\mathbb{#1}}
 \ncmd{\R}{\mbb{R}}
 \ncmd{\mrm}[1]{\mathrm{#1}}
+
+\ncmd{\vphi}{\varphi}
+
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\spn}{span}
 
 \ncmd{\inj}{\hookrightarrow}
 
@@ -67,32 +75,160 @@
 
 	\section{גאומטריה דיפרנציאלית}
 	
+	כדי להגדיר דברים בקורדינטות, נניח שיש לנו קורדינטות מקומיות:
+	\(x=(x^1,\dotsc,x^n): \R^k \to \R^n\).
+	
+	\begin{example*}
+		פרבולה
+		\(P = \left\{(x,y) \mid y=x^2 \right\} \subset \R^2 \)
+		עם קורדינטות מקומיות
+		\((x,y): \R \to \R^2\)
+		הנתונות על ידי
+		\(x(t)=t, y(t)=t^2\).
+	\end{example*}
+
+	\begin{example*}
+		ספירה
+		\(S^2 = \left\{(x^1,x^2,x^3) \mid \sum (x^i)^2 = 1 \right\} \subset \R^3 \)
+		עם קורדינטות מקומיות
+		\((x^1,x^2,x^3): \R^2 \to \R^3\)
+		הנתונת על ידי
+		\(
+			x^1(\theta, \vphi) = \cos\theta \sin\vphi,
+			x^2(\theta, \vphi) = \sin\theta \sin\vphi,
+			x^3(\theta, \vphi) = \cos\vphi
+		\).
+	\end{example*}
+	
 	\begin{definition*}
 		בכל נקודה
 		$p\in M$
 		יש הכלה של מרחבים משיקים
-		\(\mrm{T}_p M \subset \mrm{T}_p \R^n\)
-		(כדאי לחשוב כאן על ההגדרה באמצעות מהירויות של מסילות).
+		\(\mrm{T}_p M \subset \mrm{T}_p \R^n\),
+		והאוסף
+		\(\frac{\prt x}{\prt u^1}\Big|_p,\dotsc,\frac{\prt x}{\prt u^k}\Big|_p\)
+		מהווה בסיס עבורו.
+		\\
 		ניתן להסתכל על המרחב הוקטורי המאונך אליו, ולקבל את \textbf{המרחב הנורמלי} בנקודה:
 		\[
 			\mrm{N}_p M
 			= \left(\mrm{T}_p M\right)^\bot
 			= \left\{
-				v \in \mrm{T}_p \R^n
+				\vec{v} \in \mrm{T}_p \R^n
 				\mid
-				\forall u \in \mrm{T}_p M: \langle v,u \rangle=0
+				\forall \vec{w} \in \mrm{T}_p M: \langle \vec{v},\vec{w} \rangle=0
 			\right\}
 		\]
-		את כל המרחבים הנורמליים ניתן לחבר לכדי \textbf{האגד הנורמלי}:
+		ונבחר בסיס אורתונורמלי עבורו
+		\(\vec{w}_1|_p,\dotsc,\vec{w}_{n-k}|_p\).
+		(באופן קונסיסטנטי)
+		\\
+		את כל המרחבים הנורמליים ניתן לאחד לכדי \textbf{האגד הנורמלי}:
 		\[
 			\mrm{N} M
 			= \coprod_{p \in M} \mrm{N}_p M
 			\subset \mrm{T} \R^n
+			\cong \R^{2n}
 		\]
-		
-		א
+		האגד הנורמלי מהווה יריעה בפני עצמו, ומימדו הוא \(n\), שכן המימד של כל מרחב נורמלי הוא \(n-k\).
 	\end{definition*}
-	
-	
+
+	\begin{example*}
+		עבור
+		\(p=(t,t^2)\)
+		המרחב המשיק הוא
+		\(
+			\mrm{T}_p P
+			= \spn\left\{
+				\begin{pmatrix}
+					1\\2t
+				\end{pmatrix}
+			\right\}
+		\)
+		ולכן המרחב הנורמלי הוא
+		\(
+			\mrm{N}_p P
+			= \left\{
+				a
+				\begin{pmatrix}
+					-2t\\1
+				\end{pmatrix}
+				\mid
+				a \in \R
+			\right\}
+		\).
+	\end{example*}
+
+	\begin{example*}
+		עבור
+		\(p=(\cos\theta \sin\vphi, \sin\theta \sin\vphi, \cos\vphi)\)
+		המרחב המשיק הוא
+		\(
+			\mrm{T}_p S^2
+			= \spn\left\{
+				\begin{pmatrix}
+					-\sin\theta \sin\vphi \\ \cos\theta \sin\vphi \\ 0
+				\end{pmatrix},
+				\begin{pmatrix}
+					\cos\theta \cos\vphi \\ \sin\theta \cos\vphi \\ -\sin\vphi
+				\end{pmatrix}
+			\right\}
+		\)
+		ולכן המרחב הנורמלי הוא
+		\(
+			\mrm{N}_p S^2
+			= \left\{
+				a
+				\begin{pmatrix}
+					\cos\theta \sin\vphi \\ \sin\theta \sin\vphi \\ \cos\vphi
+				\end{pmatrix}
+				\mid
+				a \in \R
+			\right\}
+		\).
+	\end{example*}
+
+	\begin{definition*}
+		האיזומורפיזם
+		\(\mrm{T}_p \R^n \cong \R^n\)
+		מאפשר לנו להגדיר העתקה
+		\(E:\mrm{N} M \to \R^n\)
+		שעבור נקודה
+		\(p \in M \subset \R^n\)
+		ווקטור
+		\(\vec{v} \in \mrm{N}_p M\)
+		מוגדרת להיות
+		\(E(p,\vec{v})=p+v\).
+		\\
+		נקודה
+		\(e \in \R^n\)
+		נקראת \textbf{נקודת מוקד} מריבוי
+		\(\mu>0\)
+		בנקודה
+		\(p \in M\)
+		אם יש ווקטור
+		\(\vec{v} \in \mrm{N}_p M\)
+		שעבורו
+		\(e = E(p,\vec{v})\)
+		ומימד הגרעין של היעקוביאן בנקודה הוא \(\mu\), כלומר
+		\(\dim \ker JE(p,\vec{v}) = \mu\).
+	\end{definition*}
+
+	\begin{example*}
+		בקורדינטות של
+		\(\mrm{N} P\)
+		שלקחנו מתקיים
+		\(
+			E(t,a) = (t-2at,t^2+a)
+		\)
+		ולכן
+		\(
+			{JE}^i_j = \begin{pmatrix}
+				1-2a & -2t
+				\\
+				2t & 1
+			\end{pmatrix}
+		\)
+	\end{example*}
 
 \end{document}
