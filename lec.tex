@@ -91,7 +91,7 @@
 		ספירה
 		\(S^2 = \left\{(x^1,x^2,x^3) \mid \sum (x^i)^2 = 1 \right\} \subset \R^3 \)
 		עם קורדינטות מקומיות
-		\((x^1,x^2,x^3): \R^2 \to \R^3\)
+		\(x=(x^1,x^2,x^3): \R^2 \to \R^3\)
 		הנתונת על ידי
 		\(
 			x^1(\theta, \vphi) = \cos\theta \sin\vphi,
@@ -185,6 +185,12 @@
 				\mid
 				a \in \R
 			\right\}
+			= \left\{
+				a
+				\left(x(\theta, \vphi)\right)^T
+				\mid
+				a \in \R
+			\right\}
 		\).
 	\end{example*}
 
@@ -228,7 +234,38 @@
 				\\
 				2t & 1
 			\end{pmatrix}
+		\).
+		נחשב את הדטרמיננטה ונקבל שצריך להתקיים
+		\(1-2a+4t^2=0\)
+		כלומר
+		\(a=\frac{1+4t^2}{2}\)
+		ולכן הנקודה
+		\(\left(4t^3,\frac{1+6t^2}{2}\right)\)
+		נקודת מוקד מריבוי \(1\).
+	\end{example*}
+
+	\begin{example*}
+		בקורדינטות של
+		\(\mrm{N} S^2\)
+		שלקחנו מתקיים
+		\(
+		E(\theta,\vphi,R) = (1+R)x(\theta,\vphi)
 		\)
+		ולכן:
+		\[
+			{JE}^i_j = \begin{pmatrix}
+				-(1+R)(\sin\theta \sin\vphi) & (1+R)(\cos\theta \cos\vphi) & \cos\theta \sin\vphi
+				\\
+				(1+R)(\cos\theta \sin\vphi) & (1+R)(\sin\theta \cos\vphi) & \sin\theta \sin\vphi
+				\\
+				0 & 0 & \cos \vphi
+			\end{pmatrix}
+		\].
+		נחשב את הדטרמיננטה ונקבל שצריך להתקיים
+		\(-(1+R)^2 \cos^2\vphi \sin\vphi=0\)
+		כלומר כאשר
+		\(R=-1\)
+		יש נקודת מוקד מריבוי \(2\).
 	\end{example*}
 
 \end{document}
