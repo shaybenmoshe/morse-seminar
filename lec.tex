@@ -19,9 +19,11 @@
 \theoremstyle{definition}
 \newtheorem*{definition*}{הגדרה}
 \newtheorem*{example*}{דוגמה}
-\newtheorem*{motivation*}{מוטיבציה}
 
 \newcommand{\ncmd}{\newcommand}
+
+%\ncmd{\todo}[1]{}
+\ncmd{\todo}[1]{\textbf{TODO #1}}
 
 \ncmd{\prt}{\partial}
 
@@ -56,8 +58,8 @@
 		יש שיכון חלק
 		\(M \inj \R^{2k}\).
 	\end{theorem*}
-	ולכן נוכל להניח מעתה כי
-	\(M\subset \R^n\).
+	ולכן נוכל להניח מעתה כי יש לנו שיכון
+	\(x=(x^1,\dotsc,x^n): M \inj \R^n\).
 	
 	\begin{definition*}
 		עבור
@@ -79,27 +81,29 @@
 	\section{נקודות מוקד}
 	
 	כדי להגדיר דברים בקורדינטות, נניח שיש לנו קורדינטות מקומיות:
-	\(x=(x^1,\dotsc,x^n): \R^k \to \R^n\).
+	\(u=(u^1,\dotsc,u^k): U \to \R^k\).
 	
 	\begin{example*}
 		פרבולה
 		\(P = \left\{(x,y) \mid y=x^2 \right\} \subset \R^2 \)
 		עם קורדינטות מקומיות
-		\((x,y): \R \to \R^2\)
+		\(u: P \to \R\)
 		הנתונות על ידי
-		\(x(t)=t, y(t)=t^2\).
+		\(u(t,t^2)=t\).
 	\end{example*}
 
 	\begin{example*}
 		ספירה
 		\(S^2 = \left\{(x^1,x^2,x^3) \mid \sum (x^i)^2 = 1 \right\} \subset \R^3 \)
 		עם קורדינטות מקומיות
-		\(x=(x^1,x^2,x^3): \R^2 \to \R^3\)
+		\(u=(u^1,u^2,u^3): S^2 \to \R^2\)
 		הנתונת על ידי
 		\(
-			x^1(\theta, \vphi) = \cos\theta \sin\vphi,
-			x^2(\theta, \vphi) = \sin\theta \sin\vphi,
-			x^3(\theta, \vphi) = \cos\vphi
+			u^{-1}(\theta, \vphi) = \left(
+				\cos\theta \sin\vphi,
+				\sin\theta \sin\vphi,
+				\cos\vphi
+			\right)
 		\).
 	\end{example*}
 	
@@ -107,24 +111,30 @@
 		בכל נקודה
 		$p\in M$
 		יש הכלה של מרחבים משיקים
-		\(\mrm{T}_p M \subset \mrm{T}_p \R^n\),
-		והאוסף
-		\(\frac{\prt x}{\prt u^1}\Big|_p,\dotsc,\frac{\prt x}{\prt u^k}\Big|_p\)
-		מהווה בסיס עבורו.
+		\(\mrm{T}_p M \subset \mrm{T}_p \R^n\).
+		בסיס עבור
+		\(\mrm{T}_p \R^n\)
+		הוא כזכור
+		\(\frac{\prt}{\prt x^\alpha}\Big|_p\)
+		וניתן להציג את הבסיס של
+		\(\mrm{T}_p M\)
+		על ידי
+		\(\frac{\prt}{\prt u^i} = \sum \frac{\prt x^\alpha}{\prt u^i} \frac{\prt}{\prt x^\alpha}\).
 		\\
 		ניתן להסתכל על המרחב הוקטורי המאונך אליו, ולקבל את \textbf{המרחב הנורמלי} בנקודה:
 		\[
 			\mrm{N}_p M
 			= \left(\mrm{T}_p M\right)^\bot
 			= \left\{
-				\vec{v} \in \mrm{T}_p \R^n
+				v \in \mrm{T}_p \R^n
 				\mid
-				\forall \vec{w} \in \mrm{T}_p M: \langle \vec{v},\vec{w} \rangle=0
+				\forall v \in \mrm{T}_p M: \langle v,w \rangle=0
 			\right\}
 		\]
-		ונבחר בסיס אורתונורמלי עבורו
-		\(\vec{w}_1|_p,\dotsc,\vec{w}_{n-k}|_p\).
-		(באופן קונסיסטנטי)
+		ונבחר (באופן קונסיסטנטי) בסיס אורתונורמלי עבורו
+		\(w_1|_p,\dotsc,w_{n-k}|_p\),
+		כלומר
+		\(w_i=\sum w_i^\alpha \frac{\prt}{\prt x^\alpha}\)
 		\\
 		את כל המרחבים הנורמליים ניתן לאחד לכדי \textbf{האגד הנורמלי}:
 		\[
@@ -133,7 +143,17 @@
 			\subset \mrm{T} \R^n
 			\cong \R^{2n}
 		\]
-		האגד הנורמלי מהווה יריעה בפני עצמו, ומימדו הוא \(n\), שכן המימד של כל מרחב נורמלי הוא \(n-k\).
+		נזכור שיש לנו איזומורפיזם
+		\(\mrm{T}_p M \cong \R^{n-k}\)
+		וזה מאפשר להגדיר קורדינטות על האגד המשיק
+		\((u,s): \mrm{N} M \to \R^n\)
+		על ידי:
+		\[
+		(u,s)(p,v)
+		= (u,s)(p,\sum v^i w_i)
+		= (u(p),v^1,\dotsc,v^{n-k})
+		\]
+		לכן האגד הנורמלי מהווה יריעה בפני עצמו, ממימד \(n\).
 	\end{definition*}
 
 	\begin{example*}
@@ -165,7 +185,15 @@
 	\begin{example*}
 		עבור
 		\(p=(\cos\theta \sin\vphi, \sin\theta \sin\vphi, \cos\vphi)\)
-		המרחב המשיק הוא
+		נחשב למשל:
+		\[
+			\left(\frac{\prt}{\prt u^1}\Big|_p\right)^1
+			= \frac{\prt x^1}{\prt u^1}\Big|_p
+			= \frac{\prt}{\prt \theta}\Big|_p (x^1 \circ u^{-1})
+			= \frac{\prt}{\prt \theta}\Big|_p (\cos\theta \sin\vphi)
+			= -\sin\theta \sin\vphi
+		\]
+		ובסך הכל המרחב המשיק הוא
 		\(
 			\mrm{T}_p S^2
 			= \spn\left\{
@@ -176,8 +204,9 @@
 					\cos\theta \cos\vphi \\ \sin\theta \cos\vphi \\ -\sin\vphi
 				\end{pmatrix}
 			\right\}
-		\)
-		ולכן המרחב הנורמלי הוא
+		\).
+		\\
+		לכן המרחב הנורמלי הוא
 		\(
 			\mrm{N}_p S^2
 			= \left\{
@@ -198,16 +227,29 @@
 	\end{example*}
 
 	\begin{definition*}
-		האיזומורפיזם
+		נזכור שיש לנו איזומורפיזם
 		\(\mrm{T}_p \R^n \cong \R^n\)
-		מאפשר לנו להגדיר העתקה
+		ששולח את הוקטור
+		\(v = v^\alpha\frac{\prt}{\prt x^\alpha}\)
+		לנקודה
+		\(v_\alpha x^\alpha\).
+		זה מאפשר לנו להגדיר העתקה
 		\(E:\mrm{N} M \to \R^n\)
 		שעבור נקודה
 		\(p \in M \subset \R^n\)
 		ווקטור
-		\(\vec{v} \in \mrm{N}_p M\)
+		\(v \in \mrm{N}_p M \subset \mrm{T}_p \R^n\)
 		מוגדרת להיות
-		\(E(p,\vec{v})=p+v\).
+		\(E(p,v)=p+v\),
+		או בקורדינטות:
+		\[
+			E\left(\sum p_\alpha x^\alpha,\sum v^i w_i\right)
+			=
+			E\left(\sum p_\alpha x^\alpha,\sum \sum v^i w_i^\alpha \frac{\prt}{\prt x^\alpha}\right)
+			=
+			\sum \left(p_\alpha + \sum v^i w_{i\alpha}\right) x^\alpha,
+		\]
+		\todo{לא צריך לעשות משהו עם האינדקסים בסוף?}
 		\\
 		נקודה
 		\(e \in \R^n\)
@@ -216,11 +258,11 @@
 		בנקודה
 		\(p \in M\)
 		אם יש ווקטור
-		\(\vec{v} \in \mrm{N}_p M\)
+		\(v \in \mrm{N}_p M\)
 		שעבורו
-		\(e = E(p,\vec{v})\)
+		\(e = E(p,v)\)
 		ומימד הגרעין של היעקוביאן בנקודה הוא \(\mu\), כלומר
-		\(\dim \ker JE(p,\vec{v}) = \mu\).
+		\(\dim \ker JE(p,v) = \mu\).
 	\end{definition*}
 
 	\begin{example*}
@@ -288,7 +330,7 @@
 
 	\section{התבניות היסודיות}
 	
-	\begin{motivation*}
+	\begin{definition*}
 		תהי
 		\(\gamma: I \to M\)
 		מסילה.
@@ -296,14 +338,36 @@
 		\(\int_I \norm{\dot\gamma} \dd{t}\).
 		מאחר והיא מסילה ב-\(M\), מתקיים
 		\(\dot\gamma(t) \in \mrm{T}_{\gamma(t)} M\)
-		ולכן ניתן להציג אותה בבסיס של המרחב הנ"ל
-		\(\dot\gamma(t)=\dot{\gamma}^i(t) \frac{\prt x}{\prt u^i}\Big|_{\gamma(t)} \)
+		אז ניתן להציג אותה על ידי
+		\(\dot\gamma(t)=\dot{\gamma}^i(t) \frac{\prt}{\prt u^i}\Big|_{\gamma(t)} \)
 		ואז אפשר לרשום את האורך על ידי
-		\(\int_I \sqrt{\dot{\gamma}^i \dot{\gamma}^j \left\langle \frac{\prt x}{\prt u^i},\frac{\prt x}{\prt u^j} \right\rangle} \dd{t}\).
-		אם כן, אנו רואים שלגדלים
-		\(\left\langle \frac{\prt x}{\prt u^i},\frac{\prt x}{\prt u^j} \right\rangle\)
-		יש חשיבות גדולה בפני עצמם.
-	\end{motivation*}
+		\(\int_I \sqrt{
+			\sum \sum \dot{\gamma}^i \dot{\gamma}^j \left\langle \frac{\prt}{\prt u^i},\frac{\prt}{\prt u^j} \right\rangle
+		} \dd{t}\).
+		נבחין גם כי מתקיים:
+		\[
+			\left\langle \frac{\prt}{\prt u^i},\frac{\prt}{\prt u^j} \right\rangle
+			=
+			\left\langle
+				\sum \frac{\prt x^\alpha}{\prt u^i} \frac{\prt}{\prt x^\alpha},
+				\sum \frac{\prt x^\beta}{\prt u^j} \frac{\prt}{\prt x^\beta}
+			\right\rangle
+			=
+			\sum \sum \frac{\prt x^\alpha}{\prt u^i} \frac{\prt x^\beta}{\prt u^j}
+			\left\langle \frac{\prt}{\prt x^\alpha}, \frac{\prt}{\prt x^\beta} \right\rangle
+			=
+			\sum \frac{\prt x^\alpha}{\prt u^i} \frac{\prt x^\alpha}{\prt u^j}
+		\]
+		זה מגדיר
+		\((0,2)\)
+		שדה טנזורי שנקרא \textbf{התבנית היסודית הראשונה} (או המטריקה המושרית), ומסומן
+		\(g_{ij}\).
+		\\
+		אנו מקבלים למשל שהאורך של המסילה הוא
+		\(\int_I \sqrt{
+			\sum \sum \dot{\gamma}^i \dot{\gamma}^j g_{ij}
+		} \dd{t}\).
+	\end{definition*}
 	
 
 \end{document}
