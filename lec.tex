@@ -13,11 +13,13 @@
 \setlength{\parskip}{0.8em}
 
 \newtheorem{theorem}{משפט}
+\newtheorem{corollary}{מסקנה}
 \newtheorem*{theorem*}{משפט}
 
 \theoremstyle{definition}
 \newtheorem*{definition*}{הגדרה}
 \newtheorem*{example*}{דוגמה}
+\newtheorem*{motivation*}{מוטיבציה}
 
 \newcommand{\ncmd}{\newcommand}
 
@@ -26,6 +28,7 @@
 \ncmd{\mbb}[1]{\mathbb{#1}}
 \ncmd{\R}{\mbb{R}}
 \ncmd{\mrm}[1]{\mathrm{#1}}
+\ncmd{\dd}[1]{\mrm{d}#1}
 
 \ncmd{\vphi}{\varphi}
 
@@ -73,7 +76,7 @@
 	\end{theorem}
 
 
-	\section{גאומטריה דיפרנציאלית}
+	\section{נקודות מוקד}
 	
 	כדי להגדיר דברים בקורדינטות, נניח שיש לנו קורדינטות מקומיות:
 	\(x=(x^1,\dotsc,x^n): \R^k \to \R^n\).
@@ -260,12 +263,47 @@
 				\\
 				0 & 0 & \cos \vphi
 			\end{pmatrix}
-		\].
+		\]
 		נחשב את הדטרמיננטה ונקבל שצריך להתקיים
 		\(-(1+R)^2 \cos^2\vphi \sin\vphi=0\)
 		כלומר כאשר
 		\(R=-1\)
 		יש נקודת מוקד מריבוי \(2\).
 	\end{example*}
+
+	כעת נזכר במשפט סרד:
+	\begin{theorem*}[משפט סרד]
+		תהי
+		\(f:M_1\to M_2\)
+		העתקה
+		\(C^1\)
+		בין שתי יריעות מאותו מימד,
+		אז קבוצת הערכים הסינגולריים היא ממידה \(0\).
+	\end{theorem*}
+
+	\begin{corollary}
+		אוסף נקודות המוקד של \(M\) הוא ממידה \(0\).
+	\end{corollary}
+
+
+	\section{התבניות היסודיות}
+	
+	\begin{motivation*}
+		תהי
+		\(\gamma: I \to M\)
+		מסילה.
+		האורך שלה הוא
+		\(\int_I \norm{\dot\gamma} \dd{t}\).
+		מאחר והיא מסילה ב-\(M\), מתקיים
+		\(\dot\gamma(t) \in \mrm{T}_{\gamma(t)} M\)
+		ולכן ניתן להציג אותה בבסיס של המרחב הנ"ל
+		\(\dot\gamma(t)=\dot{\gamma}^i(t) \frac{\prt x}{\prt u^i}\Big|_{\gamma(t)} \)
+		ואז אפשר לרשום את האורך על ידי
+		\(\int_I \sqrt{\dot{\gamma}^i \dot{\gamma}^j \left\langle \frac{\prt x}{\prt u^i},\frac{\prt x}{\prt u^j} \right\rangle} \dd{t}\).
+		אם כן, אנו רואים שלגדלים
+		\(\left\langle \frac{\prt x}{\prt u^i},\frac{\prt x}{\prt u^j} \right\rangle\)
+		יש חשיבות גדולה בפני עצמם.
+	\end{motivation*}
+	
 
 \end{document}
