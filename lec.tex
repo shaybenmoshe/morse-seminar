@@ -49,17 +49,22 @@
 	\maketitle
 	
 	
+	
+	
 	\section{הקדמה}
 	
-	מטרת ההרצאה הזו היא להוכיח את קיומן של פונקציות מורס על יריעה חלקה \(M\).
+	מטרת ההרצאה הזו היא להוכיח את קיומן של פונקציות מורס על יריעה חלקה \(M\) ממימד \(k\).
 	
 	לצורך כך, נזכר במשפט יסודי מהתורה של יריעות חלקות:
 	\begin{theorem*}[משפט השיכון של וויטני]
-		יש שיכון חלק
-		\(M \inj \R^{2k}\).
+		קיים \(n\) כך שקיים שיכון חלק
+		\(M \inj \R^n\).
 	\end{theorem*}
-	ולכן נוכל להניח מעתה כי יש לנו שיכון
-	\(x=(x^1,\dotsc,x^n): M \inj \R^n\).
+	נניח מעתה כי 
+	\(M \subset \R^n\)
+	והעתקות
+	\(x=(x^1,\dotsc,x^n): \R^n \to \R^n\)
+	יסמנו את ההטלות לקורדינטות.
 	
 	\begin{definition*}
 		עבור
@@ -78,7 +83,9 @@
 	\end{theorem}
 
 
-	\section{נקודות מוקד}
+
+
+	\section{מרחב נורמלי}
 	
 	כדי להגדיר דברים בקורדינטות, נניח שיש לנו קורדינטות מקומיות:
 	\(u=(u^1,\dotsc,u^k): U \to \R^k\).
@@ -131,9 +138,9 @@
 			\right\}
 		\]
 		ונבחר (באופן קונסיסטנטי) בסיס אורתונורמלי עבורו
-		\(w_1|_p,\dotsc,w_{n-k}|_p\),
+		\(w_{k+1}|_p,\dotsc,w_{n}|_p\),
 		כלומר
-		\(w_i=\sum w_i^\alpha \frac{\prt}{\prt x^\alpha}\).
+		\(w_\mu=\sum w_\mu^\alpha \frac{\prt}{\prt x^\alpha}\).
 		
 		את כל המרחבים הנורמליים ניתן לאחד לכדי \textbf{האגד הנורמלי}:
 		\[
@@ -145,11 +152,11 @@
 		נזכור שיש לנו איזומורפיזם
 		\(\mrm{T}_p M \cong \R^{n-k}\)
 		וזה מאפשר להגדיר קורדינטות על האגד המשיק
-		\((u,s): \mrm{N} M \to \R^n\)
+		\((u,t): \mrm{N} M \to \R^n\)
 		על ידי:
 		\[
-		(u,s)(p,v)
-		= (u,s)(p,\sum v^i w_i)
+		(u,t)(p,v)
+		= (u,t)(p,\sum v^\mu w_\mu)
 		= (u(p),v^1,\dotsc,v^{n-k})
 		\]
 		לכן האגד הנורמלי מהווה יריעה בפני עצמו, ממימד \(n\).
@@ -225,13 +232,18 @@
 		\).
 	\end{example*}
 
+
+
+
+	\section{נקודות מוקד}
+
 	\begin{definition*}
 		נזכור שיש לנו איזומורפיזם
 		\(\mrm{T}_p \R^n \cong \R^n\)
 		ששולח את הוקטור
-		\(v = v^\alpha\frac{\prt}{\prt x^\alpha}\)
+		\(\frac{\prt}{\prt x^\alpha}\)
 		לנקודה
-		\(v_\alpha x^\alpha\).
+		\(e^\alpha\).
 		זה מאפשר לנו להגדיר העתקה
 		\(E:\mrm{N} M \to \R^n\)
 		שעבור נקודה
@@ -240,29 +252,43 @@
 		\(v \in \mrm{N}_p M \subset \mrm{T}_p \R^n\)
 		מוגדרת להיות
 		\(E(p,v)=p+v\),
-		או בקורדינטות:
+		או קצת יותר מפורשות:
 		\[
-			E\left(\sum p_\alpha x^\alpha,\sum v^i w_i\right)
-			=
-			E\left(\sum p_\alpha x^\alpha,\sum \sum v^i w_i^\alpha \frac{\prt}{\prt x^\alpha}\right)
-			=
-			\sum \left(p_\alpha + \sum v^i w_{i\alpha}\right) x^\alpha,
+			E\left(\sum p_\alpha e^\alpha,\sum v^\mu w_\mu\right)
+			= E\left(\sum p_\alpha e^\alpha,\sum \sum v^\mu w_\mu^\alpha \frac{\prt}{\prt x^\alpha}\right)
+			= \sum \left(p_\alpha + \sum v^\mu w_\mu^\alpha\right) e^\alpha,
 		\]
 		\todo{לא צריך לעשות משהו עם האינדקסים בסוף?}
 		\\
 		נקודה
 		\(e \in \R^n\)
 		נקראת \textbf{נקודת מוקד} מריבוי
-		\(\mu>0\)
+		\(m>0\)
 		בנקודה
 		\(p \in M\)
 		אם יש ווקטור
 		\(v \in \mrm{N}_p M\)
 		שעבורו
 		\(e = E(p,v)\)
-		ומימד הגרעין של היעקוביאן בנקודה הוא \(\mu\), כלומר
-		\(\dim \ker JE(p,v) = \mu\).
+		ומימד הגרעין של היעקוביאן בנקודה הוא \(m\), כלומר
+		\(\dim \ker JE(p,v) = m\).
 	\end{definition*}
+
+	נבין מה הוא היעקוביאן בקורדינטות:
+	\begin{equation*}\begin{split}
+		JE^\alpha_i\Big|_p
+		&= \frac{\prt (x^\alpha \circ E)}{\prt u^i}
+		\\&= \frac{\prt}{\prt r^i}\left (x^\alpha \circ E \circ (u,t)^{-1}\left(r^1,\dotsc,r^n\right)\right)
+		\\&= \frac{\prt}{\prt r^i} \left(x^\alpha \circ \left(u^{-1}(r^1,\dotsc,r^k) + \sum\sum r^\mu w_\mu^\beta(u^{-1}) e^\beta \right)\right)
+		\\&= \frac{\prt}{\prt r^i} \left(x^\alpha \circ u^{-1}(r^1,\dotsc,r^k)\right) + \frac{\prt}{\prt r^i} \left(\sum r^\mu w_\mu^\alpha(u^{-1}) \right)
+		\\&= \frac{\prt x^\alpha}{\prt u^i} + \sum t^\mu \frac{\prt w_\mu^\alpha}{\prt u^i}
+	\end{split}\end{equation*}
+	\begin{equation*}
+		JE^\alpha_\mu\Big|_p
+		= \frac{\prt (x^\alpha \circ E)}{\prt t^\mu}
+		= \frac{\prt}{\prt r^\mu} \left(x^\alpha \circ u^{-1}(r^1,\dotsc,r^k)\right) + \frac{\prt}{\prt r^\mu} \left(\sum r^\nu w_\nu^\alpha(u^{-1}) \right)
+		= w_\mu^\alpha
+	\end{equation*}
 
 	\begin{example*}
 		בקורדינטות של
@@ -327,7 +353,9 @@
 	\end{corollary}
 
 
-	\section{התבניות היסודיות}
+
+
+	\section{התבניות היסודיות ועקמומיות}
 	
 	\begin{definition*}
 		תהי
@@ -366,6 +394,24 @@
 		\(\int_I \sqrt{
 			\sum \sum \dot{\gamma}^i \dot{\gamma}^j g_{ij}
 		} \dd{t}\).
+	\end{definition*}
+
+	\begin{definition*}
+		באופן דומה, נגדיר שדה טנזורי שנקרא \textbf{התבנית היסודית השנייה} על ידי
+		\(\left(l_{ij}^\alpha\right) = \left(\frac{\prt^2 x^\alpha}{\prt u^i \prt u^j}\right)\).
+		בהנתן ווקטור נורמלי \(v\) אפשר לקחת להם מכפלה פנימית ולקבל את התבנית היסודית השנייה בכיוון הווקטור הנ"ל
+		\(\left(\sum v^\alpha l_{ij}^\alpha\right)\).
+	\end{definition*}
+
+	\begin{definition*}
+		בהנתן ווקטור נורמלי \(v\) כנ"ל,
+		הע"ע של התבנית היסודית השנייה בכיוון הנ"ל,
+		שמסומנים
+		\(K_1,\dotsc,K_k\),
+		נקראים \textbf{העקמומיויות הראשיות} בכיוון \(v\).
+		ההפכיים שלהם,
+		\(K_1^{-1},\dotsc,K_k^{-1}\),
+		נקראים \textbf{רדיוסי העקמומיות הראשיים} בכיוון \(v\).
 	\end{definition*}
 	
 
