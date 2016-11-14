@@ -77,7 +77,7 @@
 	\end{definition*}
 
 	נוכיח את המשפט הבא:
-	\begin{theorem}
+	\begin{theorem}\label{main-thm}
 		לכל
 		\(p\in \R^n\),
 		פרט לקבוצה ממידה 0, \(L_p\) היא פונקציית מורס.
@@ -349,7 +349,7 @@
 		אז קבוצת הערכים הסינגולריים היא ממידה \(0\).
 	\end{theorem*}
 
-	\begin{corollary}
+	\begin{corollary}\label{measure-zero}
 		אוסף נקודות המוקד של \(M\) הוא ממידה \(0\).
 	\end{corollary}
 
@@ -417,9 +417,10 @@
 
 
 
+
 	\section{נקודות מוקד ועקמומיות}
 	
-	\begin{theorem}
+	\begin{theorem}\label{focal-curvature}
 		יהיו
 		\(q\in M\)
 		נקודה וכן
@@ -509,6 +510,53 @@
 			\left(\sum v^\alpha l^\alpha_{ij}\right)
 		\),
 		כנדרש.
+	\end{proof}
+
+
+
+
+	\section{המשפט המרכזי}
+	
+	כעת נוכיח את המשפט המרכזי, משפט \ref{main-thm}.
+	\begin{proof}
+		תהי
+		\(p\in\R^n\)
+		קבועה, ונסתכל על נקודה
+		\(q\in M\)
+		אז מתקיים:
+		\[
+			L_p(q)
+			=\norm{p-q}^2
+			=\norm{p}^2 - 2 \left\langle p,q \right\rangle + \norm{q}^2
+		\]
+		ולכן:
+		\begin{equation*}\begin{split}
+			\frac{\prt L_p}{\prt u^i}\Big|_q
+			&= \frac{\prt}{\prt r^i}\left(- 2 \left\langle p,u^{-1}(r^1,\dotsc,r^k) \right\rangle + \norm{u^{-1}}^2\right)
+			\\&= \frac{\prt}{\prt r^i}\left(- 2 \sum p_\alpha x^\alpha\left(u^{-1}\right) + \sum\left(x^\alpha\left(u^{-1}\right)\right)^2 \right)
+			\\&= - 2 \sum p_\alpha \frac{\prt}{\prt r^i}\left(x^\alpha\left(u^{-1}\right)\right) + \sum\frac{\prt}{\prt r^i}\left(\left(x^\alpha\left(u^{-1}\right)\right)^2 \right)
+			\\&= - 2 \sum p_\alpha \frac{\prt x^\alpha}{\prt u^i} + \sum 2 x^\alpha\left(u^{-1}\right) \frac{\prt}{\prt r^i}\left(x^\alpha\left(u^{-1}\right) \right)
+			\\&= - 2 \sum p_\alpha \frac{\prt x^\alpha}{\prt u^i} + \sum 2 q_\alpha \frac{\prt x^\alpha}{\prt u^i}
+			\\&= 2 \sum \frac{\prt x^\alpha}{\prt u^i} \left( q_\alpha - p_\alpha \right)
+		\end{split}\end{equation*}
+		ומכאן שהנקודה \(q\) היא קריטית אם ורק אם
+		\(q-p\in \mrm{N}_p M\).
+		\\
+		אם גוזרים שוב מקבלים כמובן:
+		\[
+			\frac{\prt^2 L_p}{\prt u^i \prt u^j}\Big|_q
+			=2 \sum \left(\frac{\prt^2 x^\alpha}{\prt u^i \prt u^j} \left( q_\alpha - p_\alpha \right) + \frac{\prt x^\alpha}{\prt u^i}\frac{\prt x^\alpha}{\prt u^j} \right)
+		\]
+		ואם נרשום
+		\(p=q+av\)
+		אז נראה שזה למעשה:
+		\[
+			2\left(g_{ij}-\sum av^\alpha l^\alpha_{ij}\right)
+		\]
+		וממשפט \ref{focal-curvature} נובע שהפונקציה
+		\(L_p\)
+		מנוונת בנקודה \(q\) אם ורק אם \(p\) נקודת מוקד של \(q\).
+		לפי מסקנה \ref{measure-zero} נובע שיש רק כמות ממידה \(0\) של \(p\) כך של-\(L_p\) יש נוקדה מנוונת.
 	\end{proof}
 	
 
