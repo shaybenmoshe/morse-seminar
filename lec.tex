@@ -13,6 +13,7 @@
 \setlength{\parskip}{0.8em}
 
 \newtheorem{theorem}{משפט}
+\newtheorem{lemma}{למה}
 \newtheorem{corollary}{מסקנה}
 \newtheorem*{theorem*}{משפט}
 
@@ -264,13 +265,13 @@
 		\(e \in \R^n\)
 		נקראת \textbf{נקודת מוקד} מריבוי
 		\(m>0\)
-		בנקודה
+		של הנקודה
 		\(p \in M\)
-		אם יש ווקטור
+		אם יש וקטור
 		\(v \in \mrm{N}_p M\)
 		שעבורו
 		\(e = E(p,v)\)
-		ומימד הגרעין של היעקוביאן בנקודה הוא \(m\), כלומר
+		והאפסיות של היעקוביאן בנקודה הוא \(m\), כלומר
 		\(\dim \ker JE(p,v) = m\).
 	\end{definition*}
 
@@ -399,12 +400,12 @@
 	\begin{definition*}
 		באופן דומה, נגדיר שדה טנזורי שנקרא \textbf{התבנית היסודית השנייה} על ידי
 		\(\left(l_{ij}^\alpha\right) = \left(\frac{\prt^2 x^\alpha}{\prt u^i \prt u^j}\right)\).
-		בהנתן ווקטור נורמלי \(v\) אפשר לקחת להם מכפלה פנימית ולקבל את התבנית היסודית השנייה בכיוון הווקטור הנ"ל
+		בהנתן וקטור יחידה נורמלי \(v\) אפשר לקחת להם מכפלה פנימית ולקבל את התבנית היסודית השנייה בכיוון הוקטור הנ"ל
 		\(\left(\sum v^\alpha l_{ij}^\alpha\right)\).
 	\end{definition*}
 
 	\begin{definition*}
-		בהנתן ווקטור נורמלי \(v\) כנ"ל,
+		בהנתן וקטור \(v\) כנ"ל,
 		הע"ע של התבנית היסודית השנייה בכיוון הנ"ל,
 		שמסומנים
 		\(K_1,\dotsc,K_k\),
@@ -413,6 +414,102 @@
 		\(K_1^{-1},\dotsc,K_k^{-1}\),
 		נקראים \textbf{רדיוסי העקמומיות הראשיים} בכיוון \(v\).
 	\end{definition*}
+
+
+
+	\section{נקודות מוקד ועקמומיות}
+	
+	\begin{theorem}
+		יהיו
+		\(q\in M\)
+		נקודה וכן
+		\(v\in\mrm{N}_q M\)
+		וקטור יחידה.
+		נקודות המוקד של \(q\) לאורך
+		\(\ell = q+av\)
+		הן הנקודות
+		\(q + K_i^{-1} v\)
+		(כאשר \(i\neq 0\)).
+	\end{theorem}
+
+	\begin{proof}
+		\(q+av\)
+		היא נקודת מוקד מריבוי \(m\) אם האפסיות של
+		\(JE\)
+		בנקודה היא \(m\).
+		עלינו להביט באפסיות של
+		\(
+			\left(JE^\alpha_\beta\right)
+			= \begin{pmatrix}
+				\frac{\prt E^\alpha}{\prt u^i}
+				\\ \frac{\prt E^\alpha}{\prt t^\mu}
+			\end{pmatrix}
+		\).
+		מימד האפסיות לא משתנה על ידי כפל במטריצה הפיכה, אז נכפול במטריצה
+		\(
+			\begin{pmatrix}
+				\frac{\prt x^\beta}{\prt u^j}
+				\\ w^\beta_\nu
+			\end{pmatrix}^T
+		\)
+		ונקבל:
+		\begin{equation*}\begin{split}
+			\begin{pmatrix}
+				\sum \frac{\prt E^\alpha}{\prt u^i} \frac{\prt x^\alpha}{\prt u^j}
+				& \sum \frac{\prt E^\alpha}{\prt u^i} w^\alpha_\nu
+				\\
+				\sum \frac{\prt E^\alpha}{\prt t^\mu} \frac{\prt x^\alpha}{\prt u^j}
+				& \sum \frac{\prt E^\alpha}{\prt t^\mu} w^\alpha_\nu
+			\end{pmatrix}
+			&= 
+			\begin{pmatrix}
+				\sum \left(\frac{\prt x^\alpha}{\prt u^i} + \sum t^\mu \frac{\prt w_\mu^\alpha}{\prt u^i}\right) \frac{\prt x^\alpha}{\prt u^j}
+				& \sum \left(\frac{\prt x^\alpha}{\prt u^i} + \sum t^\mu \frac{\prt w_\mu^\alpha}{\prt u^i}\right) w^\alpha_\nu
+				\\
+				\sum w^\alpha_\mu \frac{\prt x^\alpha}{\prt u^j}
+				& \sum w^\alpha_\mu w^\alpha_\nu
+			\end{pmatrix}
+			\\&= 
+			\begin{pmatrix}
+				\sum \frac{\prt x^\alpha}{\prt u^i} \frac{\prt x^\alpha}{\prt u^j} + \sum t^\mu \sum \frac{\prt w_\mu^\alpha}{\prt u^i} \frac{\prt x^\alpha}{\prt u^j}
+				& \sum t^\mu \sum \frac{\prt w_\mu^\alpha}{\prt u^i} w^\alpha_\nu
+				\\
+				0
+				& \delta_{\mu\nu}
+			\end{pmatrix}
+		\end{split}\end{equation*}
+		ומכיוון שהבלוק הימני התחתון הוא מטריצת היחידה, מספיק להתמקד בבלוק השמאלי העליון.
+		כעת נזכור כי
+		\(
+			\sum w_\mu^\alpha \frac{\prt x^\alpha}{\prt u^j}
+			=0
+		\)
+		ולכן
+		\(
+			0
+			=\frac{\prt}{\prt u^i} \sum w_\mu^\alpha \frac{\prt x^\alpha}{\prt u^j}
+			=\sum \frac{\prt w_\mu^\alpha}{\prt u^i} \frac{\prt x^\alpha}{\prt u^j} + \sum w_\mu^\alpha \frac{\prt^2 x^\alpha}{\prt u^i \prt u^j}
+		\)
+		ומכאן שהבלוק העליון הוא:
+		\begin{equation*}\begin{split}
+			\left(\sum \frac{\prt x^\alpha}{\prt u^i} \frac{\prt x^\alpha}{\prt u^j} + \sum t^\mu \sum \frac{\prt w_\mu^\alpha}{\prt u^i} \frac{\prt x^\alpha}{\prt u^j}\right)
+			&= \left(g_{ij} - \sum t^\mu \sum w_\mu^\alpha l^\alpha_{ij}\right)
+			\\&= \left(g_{ij} - \sum a v^\alpha l^\alpha_{ij}\right)
+		\end{split}\end{equation*}
+		נבחר את המטריקה כך שהיא תהיה מטריצת הזהות, קרי
+		\(g_{ij}=\delta_{ij}\),
+		ואפשר לכפול במספר שונה מאפס, אז מקבלים שזה האפסיות של:
+		\[
+			\left(a^{-1} \delta_{ij} - \sum v^\alpha l^\alpha_{ij}\right)
+		\]
+		כלומר הריבוי של הע"ע
+		\(a^{-1}\)
+		של
+		\(
+			\left(\sum v^\alpha l^\alpha_{ij}\right)
+		\),
+		כנדרש.
+	\end{proof}
 	
 
 \end{document}
