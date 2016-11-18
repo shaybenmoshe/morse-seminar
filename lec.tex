@@ -32,6 +32,7 @@
 \ncmd{\R}{\mbb{R}}
 \ncmd{\mrm}[1]{\mathrm{#1}}
 \ncmd{\dd}[1]{\mrm{d}#1}
+\ncmd{\diff}[1]{\mrm{d}#1}
 
 \ncmd{\vphi}{\varphi}
 
@@ -59,11 +60,9 @@
 	לצורך כך, נזכר במשפט יסודי מהתורה של יריעות חלקות:
 	\begin{theorem*}[משפט השיכון של וויטני]
 		קיים \(n\) כך שקיים שיכון חלק
-		\(M \inj \R^n\).
+		\(\psi: M \inj \R^n\).
 	\end{theorem*}
-	נניח מעתה כי 
-	\(M \subset \R^n\)
-	והעתקות
+	העתקות
 	\(x=(x^1,\dotsc,x^n): \R^n \to \R^n\)
 	יסמנו את ההטלות לקורדינטות.
 	
@@ -73,7 +72,7 @@
 		נגדיר
 		\(L_p:M\to \R\)
 		על ידי
-		\(L_p(q)=\norm{p-q}^2\).
+		\(L_p(q)=\frac{1}{2}\norm{q-p}^2\).
 	\end{definition*}
 
 	נוכיח את המשפט הבא:
@@ -83,41 +82,45 @@
 		פרט לקבוצה ממידה 0, \(L_p\) היא פונקציית מורס.
 	\end{theorem}
 
-
-
-
-	\section{מרחב נורמלי}
-	
 	כדי להגדיר דברים בקורדינטות, נניח שיש לנו קורדינטות מקומיות:
-	\(u=(u^1,\dotsc,u^k): U \to \R^k\).
+	\(\varphi=(u^1,\dotsc,u^k): U \to \R^k\).
 	
 	\begin{example*}
-		פרבולה
-		\(P = \left\{(x,y) \mid y=x^2 \right\} \subset \R^2 \)
-		עם קורדינטות מקומיות
-		\(u: P \to \R\)
-		הנתונות על ידי
-		\(u(t,t^2)=t\).
+		קו ישר
+		\(M = \R\)
+		עם קורדינטות
+		\(\varphi=(u^1): M \to \R, u^1(t)=t\)
+		שמשוכן כפרבולה, כלומר
+		\(\psi: M \to \R^2, \psi(t) = (t,t^2)\).
 	\end{example*}
-
+	
 	\begin{example*}
 		ספירה
 		\(S^2 = \left\{(x^1,x^2,x^3) \mid \sum (x^i)^2 = 1 \right\} \subset \R^3 \)
-		עם קורדינטות מקומיות
-		\(u=(u^1,u^2,u^3): S^2 \to \R^2\)
+		שמשוכנת טריוויאלית, כלומר
+		\(\psi = \mrm{id}\),
+		ועם קורדינטות מקומיות
+		\(\varphi=(u^1,u^2): S^2 \to \R^2\)
 		הנתונת על ידי
 		\(
-			u^{-1}(\theta, \vphi) = \left(
+			\varphi^{-1}(\theta, \vphi) = \left(
 				\cos\theta \sin\vphi,
 				\sin\theta \sin\vphi,
 				\cos\vphi
 			\right)
 		\).
 	\end{example*}
+
+
+
+
+	\section{מרחב נורמלי}
 	
 	\begin{definition*}
 		בכל נקודה
 		$p\in M$
+		יש לנו איזומורפיזם
+		\(\diff{\psi}\)
 		יש הכלה של מרחבים משיקים
 		\(\mrm{T}_p M \subset \mrm{T}_p \R^n\).
 		בסיס עבור
@@ -135,7 +138,7 @@
 			= \left\{
 				v \in \mrm{T}_p \R^n
 				\mid
-				\forall v \in \mrm{T}_p M: \langle v,w \rangle=0
+				\forall w \in \mrm{T}_p M: \langle v,w \rangle=0
 			\right\}
 		\]
 		ונבחר (באופן קונסיסטנטי) בסיס אורתונורמלי עבורו
@@ -165,28 +168,38 @@
 
 	\begin{example*}
 		עבור
-		\(p=(t,t^2)\)
-		המרחב המשיק הוא
+		\(p=t\)
+		המרחב המשיק, לפי הקורדינטות, נפרש על ידי
+		\(\frac{\prt}{\prt u^1}\),
+		ונחשב למה הוא נשלח תחת האיזומורפיזם
+		\(\diff{\psi}\):
+		\[
+			\left(\diff{\psi}\left(\frac{\prt}{\prt u^1}\Big|_t\right)\right)f
+			=\frac{\prt}{\prt u^1}\Big|_t\left(f\circ\psi\right)
+			=\frac{\prt}{\prt r^1}\Big|_t\left(f\circ\psi\left(r^1\right)\right)
+			=\frac{\prt}{\prt r^1}\Big|_t\left(f\left(r^1,\left(r^1\right)^2\right)\right)
+			=\frac{\prt f}{\prt x^1}\Big|_{(t,t^2)}+2t\frac{\prt f}{\prt x^2}\Big|_{(t,t^2)}
+		\]
+		כלומר
 		\(
-			\mrm{T}_p P
-			= \spn\left\{
-				\begin{pmatrix}
-					1\\2t
-				\end{pmatrix}
-			\right\}
+			\diff{\psi}\left(\frac{\prt}{\prt t}\right)
+			=\frac{\prt}{\prt x^1}\Big|_{(t,t^2)}+2t\frac{\prt}{\prt x^2}\Big|_{(t,t^2)}
 		\)
-		ולכן המרחב הנורמלי הוא
-		\(
-			\mrm{N}_p P
+		ולכן המרחב הנורמלי הוא:
+		\[
+			\mrm{N}_t M
 			= \left\{
-				a
-				\begin{pmatrix}
-					-2t\\1
-				\end{pmatrix}
+				-2at\frac{\prt}{\prt x^1}\Big|_{(t,t^2)}+a\frac{\prt}{\prt x^2}\Big|_{(t,t^2)}
 				\mid
 				a \in \R
 			\right\}
-		\).
+		\]
+		וקורדינטות למרחב הנורמלי הן:
+		\[
+			(u^1,u^2)
+			=\left(\varphi,\phi\right)\left(t,-2at\frac{\prt}{\prt x^1}\Big|_{(t,t^2)}+a\frac{\prt}{\prt x^2}\Big|_{(t,t^2)}\right)
+			=(t,a)
+		\]
 	\end{example*}
 
 	\begin{example*}
@@ -240,11 +253,7 @@
 
 	\begin{definition*}
 		נזכור שיש לנו איזומורפיזם
-		\(\mrm{T}_p \R^n \cong \R^n\)
-		ששולח את הוקטור
-		\(\frac{\prt}{\prt x^\alpha}\)
-		לנקודה
-		\(e^\alpha\).
+		\(D:\R^n \cong \mrm{T}_p \R^n\).
 		זה מאפשר לנו להגדיר העתקה
 		\(E:\mrm{N} M \to \R^n\)
 		שעבור נקודה
@@ -252,7 +261,7 @@
 		ווקטור
 		\(v \in \mrm{N}_p M \subset \mrm{T}_p \R^n\)
 		מוגדרת להיות
-		\(E(p,v)=p+v\),
+		\(E(p,v)=p+D^{-1}(v)\),
 		או קצת יותר מפורשות:
 		\[
 			E\left(\sum p_\alpha e^\alpha,\sum v^\mu w_\mu\right)
@@ -277,41 +286,74 @@
 
 	נבין מה הוא היעקוביאן בקורדינטות:
 	\begin{equation*}\begin{split}
-		JE^\alpha_i\Big|_p
+		\diff{E}^\alpha_i\Big|_p
 		&= \frac{\prt (x^\alpha \circ E)}{\prt u^i}
 		\\&= \frac{\prt}{\prt r^i}\left (x^\alpha \circ E \circ (u,t)^{-1}\left(r^1,\dotsc,r^n\right)\right)
 		\\&= \frac{\prt}{\prt r^i} \left(x^\alpha \circ \left(u^{-1}(r^1,\dotsc,r^k) + \sum\sum r^\mu w_\mu^\beta(u^{-1}) e^\beta \right)\right)
 		\\&= \frac{\prt}{\prt r^i} \left(x^\alpha \circ u^{-1}(r^1,\dotsc,r^k)\right) + \frac{\prt}{\prt r^i} \left(\sum r^\mu w_\mu^\alpha(u^{-1}) \right)
 		\\&= \frac{\prt x^\alpha}{\prt u^i} + \sum t^\mu \frac{\prt w_\mu^\alpha}{\prt u^i}
 	\end{split}\end{equation*}
+	ולכן
+	\[
+		\diff{E}_i\Big|_p = \frac{\prt}{\prt u^i} + \sum t^\mu \frac{\prt w_\mu}{\prt u^i}
+	\]
+	ובדומה
 	\begin{equation*}
-		JE^\alpha_\mu\Big|_p
+		\diff{E}^\alpha_\mu\Big|_p
 		= \frac{\prt (x^\alpha \circ E)}{\prt t^\mu}
 		= \frac{\prt}{\prt r^\mu} \left(x^\alpha \circ u^{-1}(r^1,\dotsc,r^k)\right) + \frac{\prt}{\prt r^\mu} \left(\sum r^\nu w_\nu^\alpha(u^{-1}) \right)
 		= w_\mu^\alpha
 	\end{equation*}
+	ולכן
+	\[
+		\diff{E}_\mu\Big|_p = w_\mu
+	\]
 
 	\begin{example*}
 		בקורדינטות של
-		\(\mrm{N} P\)
+		\(\mrm{N} M\)
 		שלקחנו מתקיים
 		\(
-			E(t,a) = (t-2at,t^2+a)
-		\)
-		ולכן
+			E(\left(\varphi,\phi\right)^{-1}(t,a))
+			=(t,t^2)+(-2at,a)
+			=(t-2at,t^2+a)
+		\),
+		נחשב את הדיפרנציאל בקורדינטות האלו:
+		\begin{equation*}\begin{split}
+			\diff{E}\left(\frac{\prt}{\prt u^1}\right)
+			&=\frac{\prt E^1}{\prt u^1} \frac{\prt}{\prt x^1}
+			+\frac{\prt E^2}{\prt u^1} \frac{\prt}{\prt x^2}
+			\\&=\frac{\prt}{\prt r^1}\left(E^1\left(\left(\varphi,\phi\right)^{-1}\left(r^1,r^2\right)\right)\right) \frac{\prt}{\prt x^1}
+			+\frac{\prt}{\prt r^1}\left(E^2\left(\left(\varphi,\phi\right)^{-1}\left(r^1,r^2\right)\right)\right) \frac{\prt}{\prt x^2}
+			\\&=\frac{\prt}{\prt r^1}\left(r^1-2r^2 r^1\right) \frac{\prt}{\prt x^1}
+			+\frac{\prt}{\prt r^1}\left(\left(r^1\right)^2+r^2\right) \frac{\prt}{\prt x^2}
+			\\&=\left(1-2a\right) \frac{\prt}{\prt x^1}
+			+2t \frac{\prt}{\prt x^2}
+		\end{split}\end{equation*}
+		ובאופן דומה
+		\[
+			\diff{E}\left(\frac{\prt}{\prt u^2}\right)
+			=-2t \frac{\prt}{\prt x^1}
+			+\frac{\prt}{\prt x^2}
+		\]
+		או כמטריצה
 		\(
-			JE = \begin{pmatrix}
+			\diff{E}
+			=\begin{pmatrix}
 				1-2a & -2t
 				\\
 				2t & 1
 			\end{pmatrix}
 		\).
-		נחשב את הדטרמיננטה ונקבל שצריך להתקיים
+		נחשב את הדטרמיננטה, כדי לראות איפה היא מנוונת, ונקבל שצריך להתקיים
 		\(1-2a+4t^2=0\)
 		כלומר
 		\(a=\frac{1+4t^2}{2}\)
 		ולכן הנקודה
-		\(\left(4t^3,\frac{1+6t^2}{2}\right)\)
+		\(
+			E(\left(\varphi,\phi\right)^{-1}(t,\frac{1+4t^2}{2}))
+			=\left(4t^3,\frac{1+6t^2}{2}\right)
+		\)
 		נקודת מוקד מריבוי \(1\).
 	\end{example*}
 
@@ -356,6 +398,54 @@
 
 
 
+	\section{לקראת המשפט הכללי}
+	\begin{example*}
+		נחשב מתי
+		\(f=L_p\)
+		היא פונקציית מורס, כאשר
+		\(p=(p_1,p_2)\in \R^2\).
+		ובכן,
+		\[
+			f(t)
+			=\frac{1}{2}\norm{\psi(t)-p}^2
+			=\frac{1}{2}\norm{(t,t^2)-p}^2
+			=\frac{1}{2}\left(t^2-2tp_1+p_1^2+t^4-2t^2p_2+p_2^2\right)
+		\]
+		אז הדיפרנציאל מיוצג על ידי:
+		\[
+			\frac{\prt f}{\prt t}
+			=\frac{1}{2}\left(2t-2p_1+4t^3-4tp_2\right)
+			=t-p_1+2t^3-2tp_2
+			=\left\langle
+				\begin{pmatrix}
+					1 \\ 2t
+				\end{pmatrix},
+				\begin{pmatrix}
+					t \\ t^2
+				\end{pmatrix}
+				-\begin{pmatrix}
+				p_1 \\ p_2
+				\end{pmatrix}
+			\right\rangle
+		\]
+		ואם הדיפרנציאל מתאפס בנקודה, אז ההסיאן הוא:
+		\[
+			\frac{\prt^2 f}{\prt t^2}
+			=1-6t^2-2p_2
+		\]
+		נדרוש ששני הגדלים לעיל יתאפסו, מהשני נקבל
+		\(p_2=\frac{1+6t^2}{2}\)
+		ולכן מהראשון נקבל
+		\(p_1=t+2t^3-t-6t^3=-4t^3\)
+		כלומר שמתקיים
+		\(p=\left(-4t^3,\frac{1+6t^2}{2}\right)\)
+		אם ורק אם לפונקציה יש סינגולריות מנוונת אם ורק אם היא לא מורס,
+		בדיוק מה שקיבלנו על נקודות המוקד!
+	\end{example*}
+
+
+
+
 	\section{התבניות היסודיות ועקמומיות}
 	
 	\begin{definition*}
@@ -374,6 +464,8 @@
 		} \dd{t}\).
 		נבחין גם כי מתקיים:
 		\[
+			g_{ij}
+			:=
 			\left\langle \frac{\prt}{\prt u^i},\frac{\prt}{\prt u^j} \right\rangle
 			=
 			\left\langle
@@ -389,23 +481,27 @@
 		זה מגדיר
 		\((0,2)\)
 		שדה טנזורי שנקרא \textbf{התבנית היסודית הראשונה} (או המטריקה המושרית), ומסומן
-		\(g_{ij}\).
+		\(g: \mrm{T}_p M \otimes \mrm{T}_p M \to \R\).
 		\\
 		אנו מקבלים למשל שהאורך של המסילה הוא
 		\(\int_I \sqrt{
 			\sum \sum \dot{\gamma}^i \dot{\gamma}^j g_{ij}
 		} \dd{t}\).
+		\\
+		בנוסף, זה מגדיר שדה טנזורי
+		\(g^{-1}: \mrm{T}^*_p M \otimes \mrm{T}^*_p M \to \R\)
+		על ידי
+		\(\left(\tilde{g}^{ij}\right) = \left(g_{ij}\right)^{-1}\).
 	\end{definition*}
 
 	\begin{definition*}
-		באופן דומה, נגדיר שדה טנזורי שנקרא \textbf{התבנית היסודית השנייה} על ידי
-		\(\left(l_{ij}^\alpha\right) = \left(\frac{\prt^2 x^\alpha}{\prt u^i \prt u^j}\right)\).
-		בהנתן וקטור יחידה נורמלי \(v\) אפשר לקחת להם מכפלה פנימית ולקבל את התבנית היסודית השנייה בכיוון הוקטור הנ"ל
-		\(\left(\sum v^\alpha l_{ij}^\alpha\right)\).
+		בהנתן וקטור יחידה נורמלי
+		\(v=\sum v^\alpha \frac{\prt}{\prt x^\alpha}\),
+		נגדיר שדה טנזורי נוסף, שנקרא \textbf{התבנית היסודית השנייה}, ומוגדר בקורדינטות על ידי
+		\(\left(l_{ij}^v\right) = \left(\frac{\prt^2 \sum v^\alpha x^\alpha}{\prt u^i \prt u^j}\right)\).
 	\end{definition*}
 
 	\begin{definition*}
-		בהנתן וקטור \(v\) כנ"ל,
 		הע"ע של התבנית היסודית השנייה בכיוון הנ"ל,
 		שמסומנים
 		\(K_1,\dotsc,K_k\),
@@ -427,20 +523,29 @@
 		\(v\in\mrm{N}_q M\)
 		וקטור יחידה.
 		נקודות המוקד של \(q\) לאורך
-		\(\ell = q+av\)
+		\(\ell = q+D^{-1}(av)\)
 		הן הנקודות
-		\(q + K_i^{-1} v\)
-		(כאשר \(i\neq 0\)).
+		\(q + D^{-1}(K_i^{-1} v)\)
+		(כאשר \(K_i\neq 0\)).
 	\end{theorem}
 
 	\begin{proof}
-		\(q+av\)
-		היא נקודת מוקד מריבוי \(m\) אם האפסיות של
-		\(JE\)
-		בנקודה היא \(m\).
+		\(q+D^{-1}(av)\)
+		היא נקודת מוקד מריבוי \(m\) של \(q\) אם האפסיות של
+		\(\diff{E}\left(q,av\right)\)
+		היא \(m\).
 		עלינו להביט באפסיות של
+		\(\diff{E}\)
+		והוא נשמר תחת האיזומורפיזם המוזיקלי, כלומר שלהעתקה
+		\(A(X,Y)=\left\langle \diff{E}(X),Y \right\rangle\)
+		יש את אותו מימד אפסיות.
+		ומימד האפסיות לא משתנה על ידי כפל במטריצה הפיכה, אז אנחנו יכולים להסתכל במקום על
+		\[
+			A_{\alpha\beta}
+			= \left\langle \diff{E}_\alpha, w_\beta \right\rangle
+		\]
 		\(
-			\left(JE^\alpha_\beta\right)
+			\left(\diff{E}^\alpha_\beta\right)
 			= \begin{pmatrix}
 				\frac{\prt E^\alpha}{\prt u^i}
 				\\ \frac{\prt E^\alpha}{\prt t^\mu}
@@ -525,38 +630,42 @@
 		\(q\in M\)
 		אז מתקיים:
 		\[
-			L_p(q)
-			=\norm{p-q}^2
-			=\norm{p}^2 - 2 \left\langle p,q \right\rangle + \norm{q}^2
+			f(q)
+			=L_p(q)
+			=\frac{1}{2}\norm{q-p}^2
+			=\frac{1}{2}\norm{D(q-p)}^2
+			=\frac{1}{2}\left\langle Dq,Dq \right\rangle
+			+\frac{1}{2}\left\langle Dp,Dp \right\rangle
+			-\left\langle Dq,Dp \right\rangle
 		\]
-		ולכן:
+		נחשב את הדיפרנציאל
+		\(\diff{f}\)
+		בנקודה:
 		\begin{equation*}\begin{split}
-			\frac{\prt L_p}{\prt u^i}\Big|_q
-			&= \frac{\prt}{\prt r^i}\left(- 2 \left\langle p,u^{-1}(r^1,\dotsc,r^k) \right\rangle + \norm{u^{-1}}^2\right)
-			\\&= \frac{\prt}{\prt r^i}\left(- 2 \sum p_\alpha x^\alpha\left(u^{-1}\right) + \sum\left(x^\alpha\left(u^{-1}\right)\right)^2 \right)
-			\\&= - 2 \sum p_\alpha \frac{\prt}{\prt r^i}\left(x^\alpha\left(u^{-1}\right)\right) + \sum\frac{\prt}{\prt r^i}\left(\left(x^\alpha\left(u^{-1}\right)\right)^2 \right)
-			\\&= - 2 \sum p_\alpha \frac{\prt x^\alpha}{\prt u^i} + \sum 2 x^\alpha\left(u^{-1}\right) \frac{\prt}{\prt r^i}\left(x^\alpha\left(u^{-1}\right) \right)
-			\\&= - 2 \sum p_\alpha \frac{\prt x^\alpha}{\prt u^i} + \sum 2 q_\alpha \frac{\prt x^\alpha}{\prt u^i}
-			\\&= 2 \sum \frac{\prt x^\alpha}{\prt u^i} \left( q_\alpha - p_\alpha \right)
+			\diff{f}\left(X\right)
+			&=X(f)
+			\\&=\frac{1}{2}X\left\langle Dq,Dq \right\rangle
+			-X\left\langle Dq,Dp \right\rangle
+			\\&=\left\langle X,Dq \right\rangle
+			-\left\langle X,Dp \right\rangle
+			\\&=\left\langle X,D(q-p) \right\rangle
 		\end{split}\end{equation*}
 		ומכאן שהנקודה \(q\) היא קריטית אם ורק אם
-		\(q-p\in \mrm{N}_p M\).
+		\(D(q-p)\in \mrm{N}_p M\).
 		\\
-		אם גוזרים שוב מקבלים כמובן:
-		\[
-			\frac{\prt^2 L_p}{\prt u^i \prt u^j}\Big|_q
-			=2 \sum \left(\frac{\prt^2 x^\alpha}{\prt u^i \prt u^j} \left( q_\alpha - p_\alpha \right) + \frac{\prt x^\alpha}{\prt u^i}\frac{\prt x^\alpha}{\prt u^j} \right)
-		\]
-		ואם נרשום
-		\(p=q+av\)
-		אז נראה שזה למעשה:
-		\[
-			2\left(g_{ij}-\sum av^\alpha l^\alpha_{ij}\right)
-		\]
-		וממשפט \ref{focal-curvature} נובע שהפונקציה
-		\(L_p\)
-		מנוונת בנקודה \(q\) אם ורק אם \(p\) נקודת מוקד של \(q\).
-		לפי מסקנה \ref{measure-zero} נובע שיש רק כמות ממידה \(0\) של \(p\) כך של-\(L_p\) יש נוקדה מנוונת.
+		כעת נחשב את ההסיאן:
+		\begin{equation*}\begin{split}
+			\mrm{Hess}(f)(X,Y)
+			&=YXf
+			\\&=Y\left(\diff{f}\left(X\right)\right)
+			\\&=Y\left\langle X,Dq \right\rangle
+			-Y\left\langle X,Dp \right\rangle
+			\\&=\left\langle YX,Dq \right\rangle
+			+\left\langle X,Y \right\rangle
+			-\left\langle YX,Dp \right\rangle
+			\\&=\left\langle YX,D(q-p) \right\rangle
+			+\left\langle X,Y \right\rangle
+		\end{split}\end{equation*}
 	\end{proof}
 	
 
