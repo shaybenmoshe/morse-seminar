@@ -2,6 +2,7 @@
 \usepackage{fontspec}
 \usepackage{amsmath, amsthm, amssymb}
 \usepackage[top=2cm,bottom=2cm,left=2.5cm,right=2cm]{geometry}
+%\usepackage[papersize={11.4cm,8.5cm},top=0.3cm,bottom=0.3cm,left=0.3cm,right=0.3cm]{geometry}
 
 \usepackage{polyglossia}
 \setdefaultlanguage{hebrew}
@@ -501,15 +502,15 @@
 			\\&=\frac{\prt}{\prt r^1}\left(\left(r^1\right)^2-2r^1 p_1+p_1^2+\left(r^1\right)^4-2\left(r^1\right)^2p_2+p_2^2\right)
 			\\&=\frac{1}{2}\left(2t-2p_1+4t^3-4tp_2\right)
 			\\&=t-p_1+2t^3-2tp_2
-			\\&=\lip
+			\\&=-\lip
 				\begin{pmatrix}
 					1 \\ 2t
 				\end{pmatrix},
 				\begin{pmatrix}
-					t \\ t^2
+					p_1 \\ p_2
 				\end{pmatrix}
 				-\begin{pmatrix}
-				p_1 \\ p_2
+					t \\ t^2
 				\end{pmatrix}
 			\rip
 		\end{split}\end{equation*}
@@ -538,12 +539,16 @@
 		\(q\in M\)
 		נקודה וכן
 		\(v\in\mrm{N}_q M\)
-		וקטור יחידה.
-		נקודות המוקד של \(q\) לאורך
-		\(\ell = q+D^{-1}(av)\)
-		הן הנקודות
-		\(q + D^{-1}(K_i^{-1} v)\)
-		(כאשר \(K_i\neq 0\)).
+		וקטור.
+		אזי
+		\(p=E(q,v)\)
+		היא נקודת מוקד על ידי
+		\(q,v\)
+		אם ורק אם ההעתקה הבילינארית
+		\(B: \mrm{T}_q M \otimes \mrm{T}_q M \to \R\)
+		המוגדרת
+		\(B(X,Y) = \lip X,Y \rip - \lip v,X\tilde{Y} \rip\)
+		מנוונת.
 	\end{theorem*}
 
 	\begin{proof}
@@ -567,7 +572,7 @@
 		נסמן את הצמצום למרחב
 		\(\mrm{T}_q M \otimes \mrm{T}_q M\)
 		על ידי
-		\(B|_{(q,v)}: \mrm{T}_q \otimes \mrm{T}_q M \to \R\)
+		\(B|_{(q,v)}: \mrm{T}_q M \otimes \mrm{T}_q M \to \R\)
 		המוגדרת
 		\(B|_{(q,v)}(X,Y) = \lip X,Y \rip + \lip X\tilde{v},Y \rip\).
 		נזכור גם כי
@@ -683,15 +688,15 @@
 		\(B_{ij}|_{(q,v(q))}\),
 		\\
 		אמ"מ
-		\(B_{ij}|_{(q,v(q))}-(-t)\delta_{ij} = (1+\frac{1}{t})\delta_{ij} + \lip v(q),l_{ij} \rip\)
+		\(B_{ij}|_{(q,v(q))}-(-t)\delta_{ij} = (1+t)\delta_{ij} + \lip v(q),l_{ij} \rip\)
 		סינגולרית,
 		\\
 		אמ"מ
-		\(B_{ij}|_{(q,(1+\frac{1}{t})^{-1}v(q))}=\delta_{ij} + \lip (1+\frac{1}{t})^{-1}v(q),l_{ij} \rip\)
+		\(B_{ij}|_{(q,\frac{1}{1+t}v(q))}=\delta_{ij} + \lip \frac{1}{1+t}v(q),l_{ij} \rip\)
 		סינגולרית,
 		\\
 		אמ"מ
-		\((1+\frac{1}{t})^{-1}v(q)\)
+		\(E\left(q,\frac{1}{1+t}v(q)\right) = q + \frac{1}{1+t} (p-q)\)
 		נקודת מוקד.
 	\end{proof}
 	
