@@ -36,6 +36,9 @@
 
 \ncmd{\vphi}{\varphi}
 
+\ncmd{\lip}{\left\langle}
+\ncmd{\rip}{\right\rangle}
+
 \DeclareMathOperator{\im}{Im}
 \DeclareMathOperator{\spn}{span}
 
@@ -125,6 +128,8 @@
 		אבל מאחר ו-\(M\) קומפקטית, אז סגורה היא גם קומפקטית,
 		ולכן תמונתה קומפקטית ולכן גם סגורה, כנדרש.
 	\end{proof}
+	מעתה נניח כי
+	\(M \subset \R^n\)
 	
 	\begin{definition*}
 		עבור
@@ -132,7 +137,7 @@
 		נגדיר
 		\(L_p:M\to \R\)
 		על ידי
-		\(L_p(q)=\frac{1}{2}\norm{\psi(q)-p}^2\).
+		\(L_p(q)=\frac{1}{2}\norm{q-p}^2\).
 	\end{definition*}
 
 	נוכיח את המשפט הבא:
@@ -146,20 +151,16 @@
 	\(\varphi=(u^1,\dotsc,u^k): U \to \R^k\).
 	
 	\begin{example*}
-		קו ישר
-		\(M = \R\)
+		קו ישר שמשוכן כפרבולה, קרי
+		\(M = \left\{ (t,t^2)\mid t \in \R \right\}\)
 		עם קורדינטות
-		\(\varphi=(u^1): M \to \R, u^1(t)=t\)
-		שמשוכן כפרבולה, כלומר
-		\(\psi: M \to \R^2, \psi(t) = (t,t^2)\).
+		\(\varphi=(u^1): M \to \R, u^1(t,t^2)=t\).
 	\end{example*}
 	
 	\begin{example*}
 		ספירה
 		\(S^2 = \left\{(x^1,x^2,x^3) \mid \sum (x^i)^2 = 1 \right\} \subset \R^3 \)
-		שמשוכנת טריוויאלית, כלומר
-		\(\psi = \mrm{id}\),
-		ועם קורדינטות מקומיות
+		שמשוכנת כרגיל עם קורדינטות מקומיות
 		\(\varphi=(u^1,u^2): S^2 \to \R^2\)
 		הנתונת על ידי
 		\(
@@ -179,28 +180,26 @@
 	\begin{definition*}
 		בכל נקודה
 		$p\in M$
-		יש העתקה חח"ע
-		\(\diff{\psi}: \mrm{T}_p M \hookrightarrow \mrm{T}_{\psi(p)} \R^n\).
+		יש שיכון
+		\(\mrm{T}_p M \subset \mrm{T}_p \R^n\).
 		בסיס עבור
 		\(\mrm{T}_p M\)
 		הוא
-		\(\frac{\prt}{\prt u^i}\Big|_p\)
-		והוא נשלח לבסיס
-		\(w_i|_p=\diff{\psi}\left(\frac{\prt}{\prt u^i}\Big|_p\right)\).
+		\(w_i|_p=\frac{\prt}{\prt u^i}\Big|_p\).
 		ניתן להסתכל על המרחב הוקטורי המאונך, ולקבל את \textbf{המרחב הנורמלי} בנקודה:
 		\[
 			\mrm{N}_p M
-			= \left(\diff{\psi}\left(\mrm{T}_p M\right)\right)^\bot
+			= \left(\mrm{T}_p M\right)^\bot
 			= \left\{
-				w \in \mrm{T}_{\psi(p)} \R^n
+				w \in \mrm{T}_p \R^n
 				\mid
-				\forall v \in \mrm{T}_p M: \langle w,\diff{\psi}(v) \rangle=0
+				\forall v \in \mrm{T}_p M: \langle w,v \rangle=0
 			\right\}
 		\]
 		ונבחר (באופן קונסיסטנטי) בסיס אורתונורמלי עבורו
 		\(w_{k+1}|_p,\dotsc,w_{n}|_p\),
 		ונציג אותו לפי הבסיס הסטנדרטי:
-		\(w_\mu = \sum w^\alpha_\mu \frac{\prt}{\prt \alpha}\).
+		\(w_\mu = \sum w^\alpha_\mu \frac{\prt}{\prt x^\alpha}\).
 		
 		את כל המרחבים הנורמליים ניתן לאחד לכדי \textbf{האגד הנורמלי}:
 		\[
@@ -225,18 +224,16 @@
 		\(p=t\)
 		המרחב המשיק, לפי הקורדינטות, נפרש על ידי
 		\(\frac{\prt}{\prt u^1}\),
-		ונחשב למה הוא נשלח תחת האיזומורפיזם
-		\(\diff{\psi}\):
+		ונחשב אותו:
 		\[
-			\left(\diff{\psi}\left(\frac{\prt}{\prt u^1}\Big|_t\right)\right)f
-			=\frac{\prt}{\prt u^1}\Big|_t\left(f\circ\psi\right)
-			=\frac{\prt}{\prt r^1}\Big|_t\left(f\circ\psi\left(r^1\right)\right)
+			\frac{\prt}{\prt u^1}\Big|_{(t,t^2)} f
+			=\frac{\prt}{\prt r^1}\Big|_t\left(f\circ\varphi^{-1}\left(r^1\right)\right)
 			=\frac{\prt}{\prt r^1}\Big|_t\left(f\left(r^1,\left(r^1\right)^2\right)\right)
 			=\frac{\prt f}{\prt x^1}\Big|_{(t,t^2)}+2t\frac{\prt f}{\prt x^2}\Big|_{(t,t^2)}
 		\]
 		כלומר
 		\(
-			\diff{\psi}\left(\frac{\prt}{\prt t}\right)
+			\frac{\prt}{\prt u^1}\Big|_{(t,t^2)}
 			=\frac{\prt}{\prt x^1}\Big|_{(t,t^2)}+2t\frac{\prt}{\prt x^2}\Big|_{(t,t^2)}
 		\)
 		ולכן המרחב הנורמלי הוא:
@@ -326,20 +323,20 @@
 		ווקטור
 		\(v \in \mrm{N}_p M\)
 		מוגדרת להיות
-		\(E(p,v)=\psi(p)+\tilde{D}^{-1}(v)\),
+		\(E(p,v)=p+\tilde{D}^{-1}(v)\),
 		או קצת יותר מפורשות:
 		\[
 			E\left(p,v\right)
-			=E\left(\sum p_\alpha e^\alpha,\sum \sum v^\mu w_\mu^\alpha(\psi(p)) \frac{\prt}{\prt x^\alpha}\right)
-			=\sum p_\alpha e^\alpha + \sum\sum v^\mu w_\mu^\alpha(\psi(p)) e^\alpha
-			=\sum \left(p_\alpha + \sum v^\mu w_\mu^\alpha(\psi(p))\right) e^\alpha
+			=E\left(\sum p_\alpha e^\alpha,\sum \sum v^\mu w_\mu^\alpha(p) \frac{\prt}{\prt x^\alpha}\right)
+			=\sum p_\alpha e^\alpha + \sum\sum v^\mu w_\mu^\alpha(p) e^\alpha
+			=\sum \left(p_\alpha + \sum v^\mu w_\mu^\alpha(p)\right) e^\alpha
 		\]
 		ובקורדינטות:
 		\[
 			E\left(\left(\varphi,\phi\right)^{-1}\left(r^1,\dotsc,r^n\right)\right)
 			=\sum \left(
-				x^\alpha\left(\psi\circ\varphi^{-1}\right)
-				+\sum r^\mu w_\mu^\alpha\left(\psi\circ\varphi^{-1}\right)
+				x^\alpha\left(\varphi^{-1}\right)
+				+\sum r^\mu w_\mu^\alpha\left(\varphi^{-1}\right)
 			\right) e^\alpha
 		\]
 		נקודה
@@ -353,33 +350,48 @@
 		שעבורו
 		\(e = E(p,v)\)
 		והאפסיות של הדיפרנציאל בנקודה הוא \(m\), כלומר
-		\(\dim \ker \diff{E}|_{(p,v)} = m\).
+		\(\mrm{null}\left(\diff{E}|_{(p,v)}\right) = \dim \ker \diff{E}|_{(p,v)} = m\).
 	\end{definition*}
 
-	נבין מה הוא הדיפרנציאל בקורדינטות:
+	עבור נקודה
+	\((q,v)\)
+	יש איזומורפיזם קנוני:
+	\[
+		\mrm{T}_{(p,v)} \mrm{N} M
+		\cong \mrm{T}_q M \oplus \mrm{T}_v \mrm{N}_p M
+		\cong \mrm{T}_p M \oplus \mrm{N}_p M
+		= \mrm{T}_p \R^n
+	\]
+	ומאחר והעתקה
+	\(E: \mrm{N} M \to \R^n\)
+	אז באופן טבעי מקבלים שהדיפרנציאל הוא
+	\(\diff{E}: \mrm{T}_p M \oplus \mrm{N}_p M \to \mrm{T}_p M \oplus \mrm{N}_p M\):
 	\begin{equation*}\begin{split}
-		\diff{E}^\alpha_i\Big|_{\left(p,v\right)}
+		\diff{E}^\alpha_i|_{\left(p,v\right)}
 		&= \frac{\prt E^\alpha}{\prt u^i}
 		\\&= \frac{\prt}{\prt r^i}\left (E^\alpha\left((\varphi,\phi)^{-1}(r)\right)\right)
-		\\&= \frac{\prt}{\prt r^i} \left(x^\alpha\left(\psi\circ\varphi^{-1}\right)
-		+\sum r^\mu w_\mu^\alpha\left(\psi\circ\varphi^{-1}\right)\right)
-		\\&= \diff{\psi}\left(\frac{\prt}{\prt u^i}\right)(x^\alpha) + \sum t^\mu \diff{\psi}\left(\frac{\prt}{\prt u^i}\right) \left(w_\mu^\alpha\right)
+		\\&= \frac{\prt}{\prt r^i} \left(x^\alpha\left(\varphi^{-1}\right)
+		+\sum r^\mu w_\mu^\alpha\left(\varphi^{-1}\right)\right)
+		\\&= \frac{\prt}{\prt u^i}(x^\alpha) + \sum t^\mu \frac{\prt}{\prt u^i} \left(w_\mu^\alpha\right)
 	\end{split}\end{equation*}
-	ולכן
+	ולכן עבור
+	\(X\in \mrm{T}_p M\):
 	\[
-		\diff{E}_i\Big|_{\left(p,v\right)} = \diff{\psi}\left(\frac{\prt}{\prt u^i}\right) + \sum t^\mu \diff{\psi}\left(\frac{\prt}{\prt u^i}\right) \left(w_\mu\right)
+		\diff{E}|_{\left(p,v\right)} \left(X\right)
+		=X+X\tilde{v}
 	\]
 	ובדומה
 	\begin{equation*}
-		\diff{E}^\alpha_\mu\Big|_{\left(p,v\right)}
+		\diff{E}^\alpha_\mu|_{\left(p,v\right)}
 		= \frac{\prt E^\alpha}{\prt u^\mu}
-		= \frac{\prt}{\prt r^\mu} \left(x^\alpha\left(\psi\circ\varphi^{-1}\right)
-		+\sum r^\nu w_\nu^\alpha\left(\psi\circ\varphi^{-1}\right)\right)
-		= w_\mu^\alpha
+		= \frac{\prt}{\prt r^\mu} \left(x^\alpha\left(\varphi^{-1}\right)
+		+\sum r^\nu w_\nu^\alpha\left(\varphi^{-1}\right)\right)
+		= w_\mu^\alpha|_p
 	\end{equation*}
-	ולכן
+	ולכן עבור
+	\(X\in \mrm{T}_p M\):
 	\[
-		\diff{E}_\mu\Big|_{\left(p,v\right)} = w_\mu
+		\diff{E}|_{\left(p,v\right)} \left(X\right) = X
 	\]
 
 	\begin{example*}
@@ -425,7 +437,7 @@
 		ולכן הנקודה
 		\(
 			E(\left(\varphi,\phi\right)^{-1}(t,\frac{1+4t^2}{2}))
-			=\left(4t^3,\frac{1+6t^2}{2}\right)
+			=\left(-4t^3,\frac{1+6t^2}{2}\right)
 		\)
 		נקודת מוקד מריבוי \(1\).
 	\end{example*}
@@ -473,7 +485,7 @@
 
 
 
-	\section{לקראת המשפט הכללי}
+	\section{לקראת המשפט המרכזי}
 	\begin{example*}
 		נחשב מתי
 		\(f=L_p\)
@@ -481,17 +493,19 @@
 		\(p=(p_1,p_2)\in \R^2\).
 		ובכן,
 		\[
-			f(t)
-			=\frac{1}{2}\norm{\psi(t)-p}^2
+			f(t,t^2)
 			=\frac{1}{2}\norm{(t,t^2)-p}^2
 			=\frac{1}{2}\left(t^2-2tp_1+p_1^2+t^4-2t^2p_2+p_2^2\right)
 		\]
 		אז הדיפרנציאל מיוצג על ידי:
-		\[
-			\frac{\prt f}{\prt t}
-			=\frac{1}{2}\left(2t-2p_1+4t^3-4tp_2\right)
-			=t-p_1+2t^3-2tp_2
-			=\left\langle
+		\begin{equation*}\begin{split}
+			\frac{\prt f}{\prt u^1}
+			&=\frac{\prt}{\prt r^1}\left(f\circ\left(\varphi,\phi\right)^{-1}\left(r^1\right)\right)
+			\\&=\frac{\prt}{\prt r^1}\left(f\left(r^1,\left(r^1\right)^2\right)\right)
+			\\&=\frac{\prt}{\prt r^1}\left(\left(r^1\right)^2-2r^1 p_1+p_1^2+\left(r^1\right)^4-2\left(r^1\right)^2p_2+p_2^2\right)
+			\\&=\frac{1}{2}\left(2t-2p_1+4t^3-4tp_2\right)
+			\\&=t-p_1+2t^3-2tp_2
+			\\&=\lip
 				\begin{pmatrix}
 					1 \\ 2t
 				\end{pmatrix},
@@ -501,27 +515,27 @@
 				-\begin{pmatrix}
 				p_1 \\ p_2
 				\end{pmatrix}
-			\right\rangle
-		\]
+			\rip
+		\end{split}\end{equation*}
 		ואם הדיפרנציאל מתאפס בנקודה, אז ההסיאן הוא:
 		\[
-			\frac{\prt^2 f}{\prt t^2}
-			=1-6t^2-2p_2
+			\frac{\prt^2 f}{\prt \left(u^1\right)^2}
+			=1+6t^2-2p_2
 		\]
 		נדרוש ששני הגדלים לעיל יתאפסו, מהשני נקבל
 		\(p_2=\frac{1+6t^2}{2}\)
 		ולכן מהראשון נקבל
-		\(p_1=t+2t^3-t-6t^3=-4t^3\)
+		\(p_1=t+2t^3-t-6t^3=-4t^3\),
 		כלומר שמתקיים
 		\(p=\left(-4t^3,\frac{1+6t^2}{2}\right)\)
-		אם ורק אם לפונקציה יש סינגולריות מנוונת אם ורק אם היא לא מורס,
+		אם ורק אם לפונקציה יש סינגולריות מנוונת, שזה אם ורק אם היא לא מורס,
 		בדיוק מה שקיבלנו על נקודות המוקד!
 	\end{example*}
 
 
 
 
-	\section{נקודות מוקד ועקמומיות}
+	\section{עוד על נקודות מוקד}
 	
 	\begin{theorem}\label{focal-curvature}
 		יהיו
@@ -537,91 +551,46 @@
 	\end{theorem}
 
 	\begin{proof}
-		\(q+D^{-1}(av)\)
-		היא נקודת מוקד מריבוי \(m\) של \(q\) אם האפסיות של
-		\(\diff{E}\left(q,av\right)\)
-		היא \(m\).
-		עלינו להביט באפסיות של
-		\(\diff{E}\)
-		והוא נשמר תחת האיזומורפיזם המוזיקלי, כלומר שלהעתקה
-		\(A(X,Y)=\left\langle \diff{E}(X),Y \right\rangle\)
-		יש את אותו מימד אפסיות.
-		ומימד האפסיות לא משתנה על ידי כפל במטריצה הפיכה, אז אנחנו יכולים להסתכל במקום על
-		\[
-			A_{\alpha\beta}
-			= \left\langle \diff{E}_\alpha, w_\beta \right\rangle
-		\]
+		עבור נקודה
+		\((q,v)\)
+		נגדיר את ההעתקה
+		\(A|_{(q,v)}(X,Y)=\lip \diff{E}|_{(q,v)}(X),Y \rip\).
+		מאחר ואנחנו כופלים פנימית במשהו מדרגה מלאה, האפסיות נשארת זהה, קרי
 		\(
-			\left(\diff{E}^\alpha_\beta\right)
-			= \begin{pmatrix}
-				\frac{\prt E^\alpha}{\prt u^i}
-				\\ \frac{\prt E^\alpha}{\prt t^\mu}
-			\end{pmatrix}
+			\mrm{null}\left(\diff{E}|_{(q,v)}\right)
+			=\mrm{null}\left(A|_{(q,v)}\right)
 		\).
-		מימד האפסיות לא משתנה על ידי כפל במטריצה הפיכה, אז נכפול במטריצה
-		\(
-			\begin{pmatrix}
-				\frac{\prt x^\beta}{\prt u^j}
-				\\ w^\beta_\nu
-			\end{pmatrix}^T
-		\)
-		ונקבל:
+		נפרק את \(X,Y\) לחלקים המשיקים והמאונכים ונקבל:
 		\begin{equation*}\begin{split}
-			\begin{pmatrix}
-				\sum \frac{\prt E^\alpha}{\prt u^i} \frac{\prt x^\alpha}{\prt u^j}
-				& \sum \frac{\prt E^\alpha}{\prt u^i} w^\alpha_\nu
-				\\
-				\sum \frac{\prt E^\alpha}{\prt t^\mu} \frac{\prt x^\alpha}{\prt u^j}
-				& \sum \frac{\prt E^\alpha}{\prt t^\mu} w^\alpha_\nu
-			\end{pmatrix}
-			&= 
-			\begin{pmatrix}
-				\sum \left(\frac{\prt x^\alpha}{\prt u^i} + \sum t^\mu \frac{\prt w_\mu^\alpha}{\prt u^i}\right) \frac{\prt x^\alpha}{\prt u^j}
-				& \sum \left(\frac{\prt x^\alpha}{\prt u^i} + \sum t^\mu \frac{\prt w_\mu^\alpha}{\prt u^i}\right) w^\alpha_\nu
-				\\
-				\sum w^\alpha_\mu \frac{\prt x^\alpha}{\prt u^j}
-				& \sum w^\alpha_\mu w^\alpha_\nu
-			\end{pmatrix}
-			\\&= 
-			\begin{pmatrix}
-				\sum \frac{\prt x^\alpha}{\prt u^i} \frac{\prt x^\alpha}{\prt u^j} + \sum t^\mu \sum \frac{\prt w_\mu^\alpha}{\prt u^i} \frac{\prt x^\alpha}{\prt u^j}
-				& \sum t^\mu \sum \frac{\prt w_\mu^\alpha}{\prt u^i} w^\alpha_\nu
-				\\
-				0
-				& \delta_{\mu\nu}
-			\end{pmatrix}
+			A|_{(q,v)}(X^T+X^N,Y^T+Y^N)
+			&= \lip \diff{E}(X^T+X^N),Y^T+Y^N \rip
+			\\&= \lip X^T+X^T\tilde{v} +X^N ,Y^T+Y^N \rip
+			\\&= \lip X^T,Y^T \rip + \lip X^T\tilde{v},Y^T \rip
+			+ \lip X^T\tilde{v},Y^N \rip + \lip X^N,Y^N \rip
 		\end{split}\end{equation*}
-		ומכיוון שהבלוק הימני התחתון הוא מטריצת היחידה, מספיק להתמקד בבלוק השמאלי העליון.
-		כעת נזכור כי
-		\(
-			\sum w_\mu^\alpha \frac{\prt x^\alpha}{\prt u^j}
-			=0
-		\)
+		נסמן את הצמצום למרחב
+		\(\mrm{T}_q M \otimes \mrm{T}_q M\)
+		על ידי
+		\(B|_{(q,v)}: \mrm{T}_q \otimes \mrm{T}_q M \to \R\)
+		המוגדרת
+		\(B|_{(q,v)}(X,Y) = \lip X,Y \rip + \lip X\tilde{v},Y \rip\).
+		נזכור גם כי
+		\(\lip v,Y \rip=0\)
 		ולכן
 		\(
-			0
-			=\frac{\prt}{\prt u^i} \sum w_\mu^\alpha \frac{\prt x^\alpha}{\prt u^j}
-			=\sum \frac{\prt w_\mu^\alpha}{\prt u^i} \frac{\prt x^\alpha}{\prt u^j} + \sum w_\mu^\alpha \frac{\prt^2 x^\alpha}{\prt u^i \prt u^j}
+			\lip X\tilde{v},Y \rip + \lip v,X\tilde{Y} \rip=0
 		\)
-		ומכאן שהבלוק העליון הוא:
-		\begin{equation*}\begin{split}
-			\left(\sum \frac{\prt x^\alpha}{\prt u^i} \frac{\prt x^\alpha}{\prt u^j} + \sum t^\mu \sum \frac{\prt w_\mu^\alpha}{\prt u^i} \frac{\prt x^\alpha}{\prt u^j}\right)
-			&= \left(g_{ij} - \sum t^\mu \sum w_\mu^\alpha l^\alpha_{ij}\right)
-			\\&= \left(g_{ij} - \sum a v^\alpha l^\alpha_{ij}\right)
-		\end{split}\end{equation*}
-		נבחר את המטריקה כך שהיא תהיה מטריצת הזהות, קרי
-		\(g_{ij}=\delta_{ij}\),
-		ואפשר לכפול במספר שונה מאפס, אז מקבלים שזה האפסיות של:
-		\[
-			\left(a^{-1} \delta_{ij} - \sum v^\alpha l^\alpha_{ij}\right)
-		\]
-		כלומר הריבוי של הע"ע
-		\(a^{-1}\)
-		של
+		אז אפשר לרשום
+		\(B|_{(q,v)}(X,Y) = \lip X,Y \rip - \lip v,X\tilde{Y} \rip\).
+		הצמצום למרחב
+		\(\mrm{N}_q M \otimes \mrm{N}_q M\)
+		נותן העתקה מדרגה מלאה, כי זו מכפלה פנימית בתוך
+		\(\R^n\)
+		ולכן האפסיות שווה לאפסיות של הצמצום הקודם, כלומר
 		\(
-			\left(\sum v^\alpha l^\alpha_{ij}\right)
-		\),
-		כנדרש.
+			\mrm{null}\left(\diff{E}|_{(q,v)}\right)
+			=\mrm{null}\left(B|_{(q,v)}\right)
+		\).
 	\end{proof}
 
 
@@ -633,42 +602,57 @@
 	\begin{proof}
 		תהי
 		\(p\in\R^n\)
-		קבועה, נגדיר פונקציה נוספת
-		\(v: M\to \R^n\)
-		על ידי
-		\(v(q) = \psi(q)-p\)
+		ונסמן
+		\(v(q) = D_q(p-q) \in \mrm{N}_q M\).
 		אז מתקיים:
 		\[
 			f(q)
 			=L_p(q)
-			=\frac{1}{2}\norm{v(q)}^2
-			=\frac{1}{2}\left\langle v(q),v(q) \right\rangle
+			=\frac{1}{2}\norm{p-q}^2
+			=\frac{1}{2}\lip p-q,p-q \rip
 		\]
 		נחשב את הדיפרנציאל
 		\(\diff{f}\)
 		בנקודה:
-		\begin{equation*}
-			\diff{f}\left(X\right)
-			=X(f)
-			=\frac{1}{2}X\left\langle v(q),v(q) \right\rangle
-			=\left\langle Xv(a),v(q) \right\rangle
-		\end{equation*}
-		ומכאן שהנקודה \(q\) היא קריטית אם ורק אם
-		\(D(q-p)\in \mrm{N}_p M\).
-		\\
-		כעת נחשב את ההסיאן:
 		\begin{equation*}\begin{split}
-			\mrm{Hess} f\Big|_q(X,Y)
-			&=YXf
-			\\&=Y\left(\diff{f}\left(X\right)\right)
-			\\&=Y\left\langle X,Dq \right\rangle
-			-Y\left\langle X,Dp \right\rangle
-			\\&=\left\langle YX,Dq \right\rangle
-			+\left\langle X,Y \right\rangle
-			-\left\langle YX,Dp \right\rangle
-			\\&=\left\langle YX,D(q-p) \right\rangle
-			+\left\langle X,Y \right\rangle
+			\diff{f}\left(\frac{\prt}{\prt u^i}\right) (g)
+			&=\frac{\prt}{\prt u^i}(gf)
+			\\&=\frac{\prt}{\prt r^i}\left(g\left(f\left(\varphi^{-1}\right)\right)\right)
+			\\&=\frac{1}{2}\frac{\prt}{\prt r^i}\left(\lip p-\varphi^{-1},p-\varphi^{-1} \rip\right) \frac{\dd g}{\dd x}\Big|_{f(q)}
+			\\&=\frac{1}{2}\frac{\prt}{\prt r^i}\left(\sum p_\alpha^2+\left(\varphi_\alpha^{-1}\right)^2-p_\alpha\varphi_\alpha^{-1}\right)
+			\\&=\sum q_\alpha\frac{\prt x^\alpha}{\prt u^i} -p_\alpha\frac{\prt x^\alpha}{\prt u^i}
+			\\&=\sum (q_\alpha-p_\alpha)\frac{\prt x^\alpha}{\prt u^i}
+			\\&=-\lip v(q),\frac{\prt}{\prt u^i} \rip
 		\end{split}\end{equation*}
+		ולכן באופן כללי:
+		\[
+			\diff{f}\left(X\right)
+			=-\lip v(q),X \rip \frac{\dd}{\dd x}\Big|_{f(q)}
+		\]
+		ומכאן שהנקודה \(q\) היא קריטית אם ורק אם
+		\(v(q)\in \mrm{N}_p M\).
+		\\
+		כעת נחשב את ההסיאן בנקודה קריטית, ונקבל בדומה:
+		\begin{equation*}\begin{split}
+			\mrm{Hess} f\Big|_q\left(\frac{\prt}{\prt u^i},\frac{\prt}{\prt u^j}\right)
+			&=\frac{\prt}{\prt u^j}\left(\sum (q_\alpha-p_\alpha)\frac{\prt x^\alpha}{\prt u^i}\right)
+			\\&=\sum \frac{\prt x^\alpha}{\prt u^j}\frac{\prt x^\alpha}{\prt u^i}
+			+ \sum (q_\alpha-p_\alpha)\frac{\prt^2 x^\alpha}{\prt u^j\prt u^i}
+			\\&=\lip \frac{\prt x}{\prt u^i},\frac{\prt x}{\prt u^j} \rip
+			- \lip v(q),\frac{\prt^2}{\prt u^i\prt u^j} \rip
+		\end{split}\end{equation*}
+		ולכן באופן כללי:
+		\[
+			\mrm{Hess} f\Big|_q\left(X,Y\right)
+			=\lip X,Y \rip - \lip v(q),X\tilde{Y} \rip
+		\]
+		
+		אם כן, \(f\) מנוונת, כלומר ל-\(f\) יש נקודה קריטית מנוונת, אם יש
+		\(q \in M\)
+		כך ש-\(p\) היא נקודה מוקד יחד עם הוקטור
+		\(v(q)\),
+		ובפרט \(p\) צריכה להיות נקודת מוקד.
+		ואולם, יש רק קבוצה ממידה \(0\) של נקודות מוקד, וסיימנו.
 	\end{proof}
 	
 
