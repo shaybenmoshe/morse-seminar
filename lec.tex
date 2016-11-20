@@ -33,12 +33,9 @@
 \ncmd{\dd}[1]{\mrm{d}#1}
 \ncmd{\diff}[1]{\mrm{d}#1}
 
-\ncmd{\vphi}{\varphi}
-
 \ncmd{\lip}{\left\langle}
 \ncmd{\rip}{\right\rangle}
 
-\DeclareMathOperator{\im}{Im}
 \DeclareMathOperator{\spn}{span}
 
 \ncmd{\inj}{\hookrightarrow}
@@ -163,10 +160,10 @@
 		\(\varphi=(u^1,u^2): S^2 \to \R^2\)
 		הנתונת על ידי
 		\(
-			\varphi^{-1}(\theta, \vphi) = \left(
-				\cos\theta \sin\vphi,
-				\sin\theta \sin\vphi,
-				\cos\vphi
+			\varphi^{-1}(a, b) = \left(
+				\cos a \sin b,
+				\sin a \sin b,
+				\cos b
 			\right)
 		\).
 	\end{example*}
@@ -254,24 +251,24 @@
 
 	\begin{example*}
 		עבור
-		\(p=(\cos\theta \sin\vphi, \sin\theta \sin\vphi, \cos\vphi)\)
+		\(p=(\cos a \sin b, \sin a \sin b, \cos b)\)
 		נחשב למשל:
 		\[
 			\left(\frac{\prt}{\prt u^1}\Big|_p\right)^1
 			= \frac{\prt x^1}{\prt u^1}\Big|_p
-			= \frac{\prt}{\prt \theta}\Big|_p (x^1 \circ u^{-1})
-			= \frac{\prt}{\prt \theta}\Big|_p (\cos\theta \sin\vphi)
-			= -\sin\theta \sin\vphi
+			= \frac{\prt}{\prt a}\Big|_p (x^1 \circ \varphi^{-1})
+			= \frac{\prt}{\prt a}\Big|_p (\cos a \sin b)
+			= -\sin a \sin b
 		\]
 		ובסך הכל המרחב המשיק הוא
 		\(
 			\mrm{T}_p S^2
 			= \spn\left\{
 				\begin{pmatrix}
-					-\sin\theta \sin\vphi \\ \cos\theta \sin\vphi \\ 0
+					-\sin a \sin b \\ \cos a \sin b \\ 0
 				\end{pmatrix},
 				\begin{pmatrix}
-					\cos\theta \cos\vphi \\ \sin\theta \cos\vphi \\ -\sin\vphi
+					\cos a \cos b \\ \sin a \cos b \\ -\sin b
 				\end{pmatrix}
 			\right\}
 		\).
@@ -280,18 +277,18 @@
 		\(
 			\mrm{N}_p S^2
 			= \left\{
-				a
+				R
 				\begin{pmatrix}
-					\cos\theta \sin\vphi \\ \sin\theta \sin\vphi \\ \cos\vphi
+					\cos a \sin b \\ \sin a \sin b \\ \cos b
 				\end{pmatrix}
 				\mid
-				a \in \R
+				R \in \R
 			\right\}
 			= \left\{
-				a
-				\left(x(\theta, \vphi)\right)^T
+				R
+				\left(\varphi^{-1}(a, b)\right)^T
 				\mid
-				a \in \R
+				R \in \R
 			\right\}
 		\).
 	\end{example*}
@@ -446,20 +443,20 @@
 		\(\mrm{N} S^2\)
 		שלקחנו מתקיים
 		\(
-		E(\theta,\vphi,R) = (1+R)x(\theta,\vphi)
+			E(a,b,R) = (1+R)x(a,b)
 		\)
 		ולכן:
 		\[
-			JE = \begin{pmatrix}
-				-(1+R)(\sin\theta \sin\vphi) & (1+R)(\cos\theta \cos\vphi) & \cos\theta \sin\vphi
+			\diff{E} = \begin{pmatrix}
+				-(1+R)(\sin a \sin b) & (1+R)(\cos a \cos b) & \cos a \sin b
 				\\
-				(1+R)(\cos\theta \sin\vphi) & (1+R)(\sin\theta \cos\vphi) & \sin\theta \sin\vphi
+				(1+R)(\cos a \sin b) & (1+R)(\sin a \cos b) & \sin a \sin b
 				\\
-				0 & 0 & \cos \vphi
+				0 & 0 & \cos b
 			\end{pmatrix}
 		\]
 		נחשב את הדטרמיננטה ונקבל שצריך להתקיים
-		\(-(1+R)^2 \cos^2\vphi \sin\vphi=0\)
+		\(-(1+R)^2 \cos^2 b \sin a=0\)
 		כלומר כאשר
 		\(R=-1\)
 		יש נקודת מוקד מריבוי \(2\).
