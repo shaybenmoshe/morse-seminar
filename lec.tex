@@ -12,9 +12,8 @@
 \setlength{\parindent}{0em}
 \setlength{\parskip}{0.8em}
 
-\newtheorem{theorem}{משפט}
-\newtheorem{lemma}{למה}
-\newtheorem{corollary}{מסקנה}
+\newtheorem*{corollary*}{מסקנה}
+\newtheorem*{claim*}{טענה}
 \newtheorem*{theorem*}{משפט}
 
 \theoremstyle{definition}
@@ -137,15 +136,15 @@
 		נגדיר
 		\(L_p:M\to \R\)
 		על ידי
-		\(L_p(q)=\frac{1}{2}\norm{q-p}^2\).
+		\(L_p(q)=\frac{1}{2}\norm{p-q}^2\).
 	\end{definition*}
 
 	נוכיח את המשפט הבא:
-	\begin{theorem}\label{main-thm}
+	\begin{theorem*}
 		לכל
 		\(p\in \R^n\),
 		פרט לקבוצה ממידה 0, \(L_p\) היא פונקציית מורס.
-	\end{theorem}
+	\end{theorem*}
 
 	כדי להגדיר דברים בקורדינטות, נניח שיש לנו קורדינטות מקומיות:
 	\(\varphi=(u^1,\dotsc,u^k): U \to \R^k\).
@@ -478,9 +477,9 @@
 		היא ממידה \(0\).
 	\end{theorem*}
 
-	\begin{corollary}\label{measure-zero}
+	\begin{corollary*}
 		אוסף נקודות המוקד של \(M\) הוא ממידה \(0\).
-	\end{corollary}
+	\end{corollary*}
 
 
 
@@ -537,7 +536,7 @@
 
 	\section{עוד על נקודות מוקד}
 	
-	\begin{theorem}\label{focal-curvature}
+	\begin{theorem*}
 		יהיו
 		\(q\in M\)
 		נקודה וכן
@@ -548,7 +547,7 @@
 		הן הנקודות
 		\(q + D^{-1}(K_i^{-1} v)\)
 		(כאשר \(K_i\neq 0\)).
-	\end{theorem}
+	\end{theorem*}
 
 	\begin{proof}
 		עבור נקודה
@@ -596,9 +595,13 @@
 
 
 
-	\section{המשפט המרכזי}
-	
-	כעת נוכיח את המשפט המרכזי, משפט \ref{main-thm}.
+	\section{המשפט המרכזי וטענות נוספות}
+	כעת נוכיח את המשפט המרכזי.
+	\begin{theorem*}
+		לכל
+		\(p\in \R^n\),
+		פרט לקבוצה ממידה 0, \(L_p\) היא פונקציית מורס.
+	\end{theorem*}
 	\begin{proof}
 		תהי
 		\(p\in\R^n\)
@@ -644,13 +647,55 @@
 			\mrm{Hess} f\Big|_q\left(X,Y\right)
 			=\lip X,Y \rip - \lip v(q),X\tilde{Y} \rip
 		\]
+		כלומר:
+		\[
+			\mrm{Hess} f\Big|_q=B|_{(q,v(q))}
+		\]
 		
-		אם כן, \(f\) מנוונת, כלומר ל-\(f\) יש נקודה קריטית מנוונת, אם יש
+		אז \(f\) לא מורס (כלומר ל-\(f\) יש נקודה קריטית מנוונת) אם יש
 		\(q \in M\)
-		כך ש-\(p\) היא נקודה מוקד יחד עם הוקטור
+		כך ש-\(p\) היא נקודה מוקד ביחס לוקטור
 		\(v(q)\),
 		ובפרט \(p\) צריכה להיות נקודת מוקד.
 		ואולם, יש רק קבוצה ממידה \(0\) של נקודות מוקד, וסיימנו.
+	\end{proof}
+
+	כעת נחשב את האינדקס של הנקודות הקריטיות.
+	\begin{claim*}
+		תהי
+		\(q\)
+		נקודה קריטית של
+		\(f=L_p\),
+		אז האינדקס שווה לכמות נקודות המוקד בקטע שבין \(p\) ו-\(q\).
+	\end{claim*}
+	\begin{proof}
+		אם נעבוד בקורדינטות, אז זה עתה ראינו שמתקיים:
+		\(
+			\mrm{Hess}f_{ij}|_q
+			= B_{ij}|_{(q,v(q))}
+			= g_{ij} + \lip v(q),l_{ij} \rip
+		\).
+		נניח בה"כ כי
+		\(g_{ij}=\delta_{ij}\).
+		ובכן, יהי
+		\(-t\)
+		מספר שלילי,
+		\\
+		\(-t\)
+		ע"ע של
+		\(B_{ij}|_{(q,v(q))}\),
+		\\
+		אמ"מ
+		\(B_{ij}|_{(q,v(q))}-(-t)\delta_{ij} = (1+\frac{1}{t})\delta_{ij} + \lip v(q),l_{ij} \rip\)
+		סינגולרית,
+		\\
+		אמ"מ
+		\(B_{ij}|_{(q,(1+\frac{1}{t})^{-1}v(q))}=\delta_{ij} + \lip (1+\frac{1}{t})^{-1}v(q),l_{ij} \rip\)
+		סינגולרית,
+		\\
+		אמ"מ
+		\((1+\frac{1}{t})^{-1}v(q)\)
+		נקודת מוקד.
 	\end{proof}
 	
 
