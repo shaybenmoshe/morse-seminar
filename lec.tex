@@ -141,7 +141,7 @@
 	\begin{theorem*}
 		לכל
 		\(p\in \R^n\),
-		פרט לקבוצה ממידה 0, \(L_p\) היא פונקציית מורס.
+		פרט לקבוצה ממידה 0, \(L_p\) היא פונקצית מורס.
 	\end{theorem*}
 
 	כדי להגדיר דברים בקורדינטות, נניח שיש לנו קורדינטות מקומיות:
@@ -486,7 +486,7 @@
 	\begin{example*}
 		נחשב מתי
 		\(f=L_p\)
-		היא פונקציית מורס, כאשר
+		היא פונקצית מורס, כאשר
 		\(p=(p_1,p_2)\in \R^2\).
 		ובכן,
 		\[
@@ -602,7 +602,7 @@
 	\begin{theorem*}
 		לכל
 		\(p\in \R^n\),
-		פרט לקבוצה ממידה 0, \(L_p\) היא פונקציית מורס.
+		פרט לקבוצה ממידה 0, \(L_p\) היא פונקצית מורס.
 	\end{theorem*}
 	\begin{proof}
 		תהי
@@ -698,6 +698,64 @@
 		אמ"מ
 		\(E\left(q,\frac{1}{1+t}v(q)\right) = q + \frac{1}{1+t} (p-q)\)
 		נקודת מוקד.
+	\end{proof}
+
+
+
+
+	\section{קירוב על ידי פונקציות מורס}
+	\begin{theorem*}
+		תהי
+		\(f: M\to \R\)
+		פונקציה חסומה.
+		אזי ניתן לקרב אותה במ"ש על ידי פונקצית מורס
+		\(g: M \to \R\).
+		יתרה מכך, בהנתן
+		\(K\subset M\)
+		קומפקטית וכן
+		\(l\)
+		טבעי,
+		ניתן לדאוג שהנגזרות החלקיות מסדר
+		\(i<k\)
+		של \(g\) מקרבות את אלו של \(f\) במ"ש ב-\(K\).
+	\end{theorem*}
+	\begin{proof}
+		נבחר שיכון חסום
+		\(\psi: M \to \R^n\)
+		כך שמתקיים
+		\(\psi_1=f\).
+		לכל נקודה
+		\(c\),
+		קיימים
+		\(\varepsilon_i<\frac{1}{c}\)
+		כך שהנקודה
+		\(p=-c e^1+\sum \varepsilon_i e^i\)
+		נותנת פונקצית מורס
+		\(L_p\).
+		נגדיר
+		\(g(x)=\frac{L_p(x)-\frac{1}{2}c^2}{c}\)
+		ונטען שהיא מקיימת את הדרוש.
+		ובכן, מתקיים:
+		\begin{equation*}\begin{split}
+			g(x)-f(x)
+			&= \frac{L_p(x)-\frac{1}{2}c^2}{c}-f(x)
+			\\&= \frac{\norm{p-\psi(x)}^2-c^2}{2c}-f(x)
+			\\&= \frac{\norm{-c e^1+\sum \varepsilon_i e^i-\psi(x)}^2-c^2}{2c}-f(x)
+			\\&= \frac{
+				\left(-c+\varepsilon_1 - f\left(x\right)\right)^2
+				+\sum_{i>1} \left(\varepsilon_i - \psi_i\left(x\right)\right)^2
+				-c^2
+			}{2c}-f(x)
+			\\&= \frac{
+				c^2-2c \varepsilon_1+2c f\left(x\right)
+				+\sum \left(\varepsilon_i - \psi_i\left(x\right)\right)^2
+				-c^2
+			}{2c}-f(x)
+			\\&= \frac{
+				\sum \left(\varepsilon_i - \psi_i\left(x\right)\right)^2
+			}{2c}-\varepsilon_1
+		\end{split}\end{equation*}
+		את כל הגדלים האלו אנו יכולים להגדיל ככל שנרצה, על ידי הגדלת \(c\).
 	\end{proof}
 	
 
